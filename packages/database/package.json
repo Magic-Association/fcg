@@ -1,0 +1,24 @@
+{
+  "name": "fcg-database",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.44.5",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "@types/pg": "^8.15.5",
+    "drizzle-kit": "^0.31.4"
+  }
+}

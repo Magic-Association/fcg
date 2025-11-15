@@ -3,7 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-	"dev": "pnpm -r run dev"
+	"dev": "pnpm -r run dev",
+	"dev:web": "pnpm --filter ./apps/website run dev",
+	"generate:db": "pnpm --filter ./packages/database run generate",
+	"migrate:db": "pnpm --filter ./packages/database run migrate",
+	"export:game": "node scripts/godot-export.js",
+	"dev:server": "pnpm --filter ./apps/server run dev"
   },
   "engines": {
     "node": ">=22.19.0"
