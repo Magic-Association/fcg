@@ -1,0 +1,41 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Frieren Card Game"
+run/main_scene="uid://iilw2085dvhs"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="res://Assets/placeholders/icon.svg"
+
+[autoload]
+
+Network="*res://network_manager.gd"
+Web="*res://web_manager.gd"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/unsafe_property_access=1
+gdscript/warnings/unsafe_method_access=1
+gdscript/warnings/unsafe_cast=1
+gdscript/warnings/unsafe_call_argument=1
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "blue",
+"res://UI/": "purple"
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7gnne6yvrywc"]
+
+[ext_resource type="ButtonGroup" uid="uid://b646ndbstc8mi" path="res://UI/match_creation/gamemode_group.tres" id="1_lpf30"]
+
+[node name="MatchCreation" type="VBoxContainer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 368.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Match Name"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+placeholder_text = "username's match"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Gamemode"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ClassicContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Classic" type="Button" parent="HBoxContainer/ClassicContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_lpf30")
+text = "Classic"
+autowrap_mode = 2
+
+[node name="ClassicRanked" type="Button" parent="HBoxContainer/ClassicContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_lpf30")
+text = "Classic Ranked"
+autowrap_mode = 2
+
+[node name="PrescienceContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Prescience" type="Button" parent="HBoxContainer/PrescienceContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_lpf30")
+text = "Prescience"
+autowrap_mode = 2
+
+[node name="PrescienceRanked" type="Button" parent="HBoxContainer/PrescienceContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_lpf30")
+text = "Prescience Ranked"
+autowrap_mode = 2
+
+[node name="Custom" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+button_group = ExtResource("1_lpf30")
+text = "Custom
+"
+autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Create Match"

@@ -1,0 +1,16 @@
+{
+  "name": "frieren-card-game",
+  "private": true,
+  "type": "module",
+  "scripts": {
+	"dev": "pnpm -r run dev"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "packageManager": "pnpm@10.22.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

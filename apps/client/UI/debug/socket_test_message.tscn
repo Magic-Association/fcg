@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7b5jvdhl4csq"]
+
+[ext_resource type="Script" uid="uid://cqcg3uuxyf2kw" path="res://UI/debug/line_edit.gd" id="1_k8lm2"]
+[ext_resource type="Script" uid="uid://dc0r33prtp2bw" path="res://UI/debug/button.gd" id="2_ourb3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.3323603, 0.2944415, 0.48447692, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 5
+shadow_color = Color(0.17641911, 0.17641908, 0.17641908, 0.6)
+shadow_size = 1
+shadow_offset = Vector2(2, 2)
+
+[node name="PanelContainer" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_rhts7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "(DEBUG) Enter message here"
+script = ExtResource("1_k8lm2")
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Submit"
+script = ExtResource("2_ourb3")
+
+[connection signal="text_submitted" from="MarginContainer/HBoxContainer/LineEdit" to="MarginContainer/HBoxContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="MarginContainer/HBoxContainer/Button" method="_on_pressed"]

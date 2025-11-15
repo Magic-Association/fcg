@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://ino4tw2i3re8"]
+
+[ext_resource type="Script" uid="uid://ba8u6yn8mboqv" path="res://UI/profile.gd" id="1_mybsk"]
+[ext_resource type="Texture2D" uid="uid://dio4lp137adyb" path="res://Assets/placeholders/Sprite-0001.png" id="2_tl106"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cwpn"]
+bg_color = Color(8.731842e-06, 8.731845e-06, 8.731833e-06, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[node name="Profile" type="HBoxContainer"]
+size_flags_horizontal = 0
+size_flags_vertical = 8
+script = ExtResource("1_mybsk")
+
+[node name="ProfileMask" type="PanelContainer" parent="."]
+clip_children = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_4cwpn")
+
+[node name="ProfilePicture" type="TextureRect" parent="ProfileMask"]
+layout_mode = 2
+texture = ExtResource("2_tl106")
+expand_mode = 1
+
+[node name="Username" type="Label" parent="."]
+layout_mode = 2
+text = "Not logged in"
