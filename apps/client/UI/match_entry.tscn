@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bn3cjy4wqsqx1"]
 
 [node name="MatchEntry" type="HBoxContainer"]
-anchors_preset = -1
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
