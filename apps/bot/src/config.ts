@@ -1,4 +1,4 @@
-process.loadEnvFile();
+process.loadEnvFile("../../.env");
 
 function requireEnv(name: string): string {
   const value = process.env[name];

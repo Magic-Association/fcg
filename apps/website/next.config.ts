@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+process.loadEnvFile("../../.env");
+
 const nextConfig: NextConfig = {
   async headers() {
     return [
