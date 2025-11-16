@@ -1,13 +1,19 @@
 # dependencies
-/node_modules
 node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
 
 # env files
 .env*
+
+# builds
+dist
+.next
+
+# editor
+.godot
+
+# godot exports
+apps/website/public/export
+
+# misc
+next-env.d.ts
+.DS_Store
