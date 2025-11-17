@@ -1,6 +1,6 @@
 import { WebSocketServer, WebSocket } from "ws";
-import rpcHandler from "./rpc/rpcs";
-import { RPCResponse } from "./types/RPC";
+import rpcHandler from "./rpc/rpcs.js";
+import { RPCResponse } from "./types/RPC.js";
 
 const PORT = 9080;
 const wss = new WebSocketServer({ port: PORT });

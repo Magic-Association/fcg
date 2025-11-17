@@ -1,4 +1,4 @@
-import { RPCContext } from "./types/RPC";
+import { RPCContext } from "./types/RPC.js";
 
 export type Room = {
   name?: string;

@@ -10,6 +10,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@next/env": "^16.0.3",
     "better-auth": "^1.3.7",
     "next": "^16.0.3",
     "pg": "^8.16.3",

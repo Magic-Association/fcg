@@ -1,6 +1,6 @@
-import matches from "../rpc/matches";
-import rooms from "../rooms";
-import RPC from "../types/RPC";
+import matches from "../rpc/matches.js";
+import rooms from "../rooms.js";
+import RPC from "../types/RPC.js";
 
 export const rpcs = { ...matches, ...rooms };
 

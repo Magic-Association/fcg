@@ -1,6 +1,6 @@
-import { RPCContext } from "../types/RPC";
+import { RPCContext } from "../types/RPC.js";
 
-import { Room, exampleMatches, makeRoom } from "../rooms";
+import { Room, exampleMatches, makeRoom } from "../rooms.js";
 
 const matches = new Map<number, Room>([...exampleMatches]);
 

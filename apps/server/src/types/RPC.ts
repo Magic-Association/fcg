@@ -1,4 +1,4 @@
-import { rpcs } from "../rpc/rpcs";
+import { rpcs } from "../rpc/rpcs.js";
 
 export type RPCContext = {
   client_id: number;

@@ -3,13 +3,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-	"dev": "pnpm -r run dev",
-	"dev:web": "pnpm --filter ./apps/website run dev",
-	"generate:db": "pnpm --filter ./packages/database run generate",
-	"migrate:db": "pnpm --filter ./packages/database run migrate",
-	"export:game": "node scripts/godot-export.js",
-	"dev:server": "pnpm --filter ./apps/server run dev",
-	"dev:bot": "pnpm --filter ./apps/bot run dev"
+    "dev": "pnpm -r run dev",
+    "build": "pnpm -r run build",
+    "dev:web": "pnpm --filter ./apps/website run dev",
+    "build:web": "pnpm --filter ./apps/website run build",
+    "generate:db": "pnpm --filter ./packages/database run generate",
+    "migrate:db": "pnpm --filter ./packages/database run migrate",
+    "build:db": "pnpm --filter ./packages/database run build",
+    "dev:server": "pnpm --filter ./apps/server run dev",
+    "build:server": "pnpm --filter ./apps/server run build",
+    "dev:bot": "pnpm --filter ./apps/bot run dev",
+    "build:bot": "pnpm --filter ./apps/bot run build",
+    "export:game": "node scripts/godot-export.js"
   },
   "engines": {
     "node": ">=22.19.0"

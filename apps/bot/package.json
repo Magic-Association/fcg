@@ -8,18 +8,19 @@
   },
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
-    "build": "tsc --project tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "build": "tsc && tsc-alias",
     "start": "node --enable-source-maps ./dist/index.js",
     "register": "tsx ./src/scripts/registerCommands.ts",
     "lint": "eslint",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "discord.js": "^14.23.2",
-    "tsx": "^4.20.6"
+    "discord.js": "^14.23.2"
   },
   "devDependencies": {
+    "@types/node": "^24.10.1",
     "tsc-alias": "^1.8.10",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }
 }
