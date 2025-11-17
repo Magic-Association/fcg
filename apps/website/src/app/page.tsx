@@ -1,4 +1,4 @@
-import db, { user } from "@db";
+import db, { user } from "fcg-database";
 import { SignInButton } from "@/lib/components/auth/sign-in-button";
 
 // next.js tries to call the db at build time to render this as a static page, which is not possible if the db isn't running
