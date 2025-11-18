@@ -10,6 +10,7 @@
     "build:web": "pnpm --filter ./apps/website run build",
     "generate:db": "pnpm --filter ./packages/database run generate",
     "migrate:db": "pnpm --filter ./packages/database run migrate",
+    "studio:db": "pnpm --filter ./packages/database run studio",
     "build:db": "pnpm --filter ./packages/database run build",
     "dev:server": "pnpm --filter ./apps/server run dev",
     "build:server": "pnpm --filter ./apps/server run build",
