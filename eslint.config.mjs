@@ -1,7 +1,7 @@
 import { config as base } from "./packages/eslint-config/base.js";
 import { nextJsConfig } from "./packages/eslint-config/next.js";
 import { config as reactInternal } from "./packages/eslint-config/react-internal.js";
-import globals from "globals"
+import globals from "globals";
 
 const withFiles = (arr, files) => arr.map((c) => ({ ...c, files }));
 
@@ -23,8 +23,8 @@ export default [
     files: ["scripts/**/*.{js,mjs,cjs}"],
     languageOptions: {
       globals: {
-		...globals.node
-	  }
+        ...globals.node,
+      },
     },
   },
 

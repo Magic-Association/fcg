@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "pnpm --parallel run dev",
     "build": "pnpm -r run build",
+    "format": "pnpm exec prettier . --write",
     "dev:web": "pnpm --filter ./apps/website run dev",
     "build:web": "pnpm --filter ./apps/website run build",
     "generate:db": "pnpm --filter ./packages/database run generate",
@@ -23,5 +24,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
 }

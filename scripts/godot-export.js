@@ -26,7 +26,7 @@ function godotExport(hash) {
           return reject(err);
         }
         resolve();
-      }
+      },
     );
   });
 }
