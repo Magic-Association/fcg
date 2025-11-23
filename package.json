@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "pnpm --parallel run dev",
     "build": "pnpm -r run build",
+    "lint": "pnpm exec eslint .",
     "format": "pnpm exec prettier . --write",
     "dev:web": "pnpm --filter ./apps/website run dev",
     "build:web": "pnpm --filter ./apps/website run build",
@@ -21,7 +22,7 @@
   "engines": {
     "node": ">=22.19.0"
   },
-  "packageManager": "pnpm@10.22.0",
+  "packageManager": "pnpm@10.23.0",
   "workspaces": [
     "apps/*",
     "packages/*"

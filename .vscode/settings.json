@@ -1,5 +1,7 @@
 {
   "files.associations": {
     "export_template.html": "plaintext"
-  }
+  },
+  "eslint.useFlatConfig": true,
+  "eslint.workingDirectories": [{ "mode": "auto" }]
 }
