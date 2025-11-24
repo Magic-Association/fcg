@@ -16,7 +16,7 @@ In Godot, click "Editor" then "Manage Export Templates".
 
 ### Node.js apps
 
-Follow for Game Server, Website & Bot
+Follow for Game Server, Bot & Website
 
 1. Download Node.js from the [Nodejs.org](https://nodejs.org/en/download) website
 2. Install dependencies for all apps with `pnpm install` at the root of the project
