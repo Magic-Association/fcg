@@ -44,7 +44,7 @@ Follow for Game Server, Website & Bot
 2. Start the database container with `docker-compose up`, add the `--build` flag to build to containe
 3. Apply any database migrations with `pnpm run migrate:db`
 
-After making changes to the database, run `pnpm run generate:db`
+If you make any changes to the database schema, generate a new migration with `pnpm run generate:db`
 
 ## Contributing
 
