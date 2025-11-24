@@ -28,14 +28,14 @@ Follow for Game Server, Website & Bot
 
 ### Bot
 
-1. Go to the [Discord Developer Portal](https://discord.com/developers/applications) and copy the client ID, then navigate to "Bot" and generate and copy the bot token
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications), then navigate to "Bot" and generate and copy the bot token
 2. Include `BOT_TOKEN` and`CLIENT_ID` values in your `.env` file
 3. Start the bot with `pnpm run dev:bot`
 
 ### Website
 
-1. Include `CLIENT_SECRET` and `CLIENT_ID` values in your `.env` file
-2. To get the authentication information, go to the [Discord Developer Portal](https://discord.com/developers/applications) and go to "OAuth2"
+1.Go to the [Discord Developer Portal](https://discord.com/developers/applications), then navigate to "OAuth2" and generate the client secret
+2. Include `CLIENT_SECRET` and `CLIENT_ID` values in your `.env` file
 3. Add `http://localhost:3000/api/auth/callback/discord` as a redirect URI
 4. To test with database, see the below section
 
