@@ -33,3 +33,4 @@ function godotExport(hash) {
 
 const [hash] = await Promise.all([getGitHash(), deleteOldExports()]);
 await godotExport(hash);
+console.log(`Exported Godot project with version identifier: ${hash}`);
