@@ -14,7 +14,7 @@ export const auth = betterAuth({
       clientSecret: process.env.CLIENT_SECRET!,
       disableDefaultScope: true,
       scope: ["identify"],
-      mapProfileToUser: async (profile) => {
+      mapProfileToUser: (profile) => {
         console.log(profile);
         return {
           email: `${profile.id}@no-email.local`,

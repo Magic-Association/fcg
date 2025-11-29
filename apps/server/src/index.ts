@@ -2,7 +2,7 @@ import { WebSocketServer, WebSocket } from "ws";
 import rpcHandler from "./rpc/rpcs.js";
 import { RPCResponse } from "./types/RPC.js";
 
-const PORT = 9080;
+const PORT = 5026;
 const wss = new WebSocketServer({ port: PORT });
 
 console.log(`WebSocket server started on ws://localhost:${PORT}`);
