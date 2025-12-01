@@ -17,3 +17,4 @@ apps/website/public/export
 # misc
 next-env.d.ts
 .DS_Store
+.local.gitignore
