@@ -17,12 +17,8 @@ wss.on("connection", function connection(ws, req) {
 });
 
 function onMessage(ws: WebSocket, data: WebSocket.Data) {
-  if (typeof data !== "string") {
-    console.error("Received non-string message");
-    return;
-  }
   console.log(`Received: ${data}`);
-  const rpc = JSON.parse(data) as RPC;
+  const rpc = JSON.parse(data.toString()) as RPC;
   try {
     const result = rpcHandler(rpc);
     const response: RPCResponse = {
@@ -42,18 +38,17 @@ function onMessage(ws: WebSocket, data: WebSocket.Data) {
   }
 }
 
+// unexpected shutdown
 function shutdown() {
   console.log("Shutting down game server...");
 
-  wss.close((err) => {
-    if (err) {
-      console.error("Error during server shutdown:", err);
-      process.exit(1);
-    } else {
-      console.log("Game server closed");
-      process.exit(0);
-    }
-  });
+  wss.close();
+
+  for (const ws of wss.clients) {
+    ws.terminate();
+  }
+
+  process.exit(0);
 }
 
 process.on("SIGINT", shutdown);

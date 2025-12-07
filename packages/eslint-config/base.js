@@ -60,6 +60,8 @@ export default defineConfig([
         "warn",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
+      "@typescript-eslint/no-base-to-string": "off",
+	  "@typescript-eslint/restrict-template-expressions": "off",
     },
   },
   {
