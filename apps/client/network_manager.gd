@@ -1,6 +1,6 @@
 extends Node
 
-const SERVER_URL = "ws://localhost:9080"
+const SERVER_URL = "ws://localhost:5026"
 
 signal connected_to_server
 signal connection_closed
