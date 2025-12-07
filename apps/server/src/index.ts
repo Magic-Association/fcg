@@ -1,6 +1,6 @@
 import { WebSocketServer, WebSocket } from "ws";
 import rpcHandler from "./rpc/rpcs.js";
-import { RPCResponse } from "./types/RPC.js";
+import RPC, { RPCResponse } from "./types/RPC.js";
 
 const PORT = 5026;
 const wss = new WebSocketServer({ port: PORT });
@@ -16,9 +16,13 @@ wss.on("connection", function connection(ws, req) {
   });
 });
 
-async function onMessage(ws: WebSocket, data: WebSocket.Data) {
+function onMessage(ws: WebSocket, data: WebSocket.Data) {
+  if (typeof data !== "string") {
+    console.error("Received non-string message");
+    return;
+  }
   console.log(`Received: ${data}`);
-  const rpc = JSON.parse(data.toString());
+  const rpc = JSON.parse(data) as RPC;
   try {
     const result = rpcHandler(rpc);
     const response: RPCResponse = {
@@ -38,24 +42,17 @@ async function onMessage(ws: WebSocket, data: WebSocket.Data) {
   }
 }
 
-async function shutdown() {
+function shutdown() {
   console.log("Shutting down game server...");
 
-  const closePromises: Promise<void>[] = [];
-  wss.clients.forEach((client) => {
-    closePromises.push(
-      new Promise<void>((resolve) => {
-        client.once("close", () => resolve());
-        client.close(1001);
-      }),
-    );
-  });
-
-  await Promise.all(closePromises);
-
-  wss.close(() => {
-    console.log("Game server closed");
-    process.exit(0);
+  wss.close((err) => {
+    if (err) {
+      console.error("Error during server shutdown:", err);
+      process.exit(1);
+    } else {
+      console.log("Game server closed");
+      process.exit(0);
+    }
   });
 }
 
