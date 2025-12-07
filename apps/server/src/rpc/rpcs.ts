@@ -9,5 +9,6 @@ export default function rpcHandler(rpc: RPC) {
   if (!handler) {
     throw new Error(`Unknown RPC method: ${rpc.method}`);
   }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any
   return (handler as any)(...rpc.args) as ReturnType<typeof handler>;
 }

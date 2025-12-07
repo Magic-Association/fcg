@@ -27,4 +27,6 @@ function subscribe_to_lobby(ctx: RPCContext) {
   lobby.players.push(ctx.client_id);
 }
 
-export default { subscribe_to_lobby };
+const roomRpcs = { subscribe_to_lobby };
+
+export default roomRpcs;

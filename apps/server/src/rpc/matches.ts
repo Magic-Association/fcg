@@ -25,4 +25,6 @@ function list_matches() {
   return Array.from(matches.entries());
 }
 
-export default { join_match, create_match, list_matches };
+const matchRpcs = { join_match, create_match, list_matches };
+
+export default matchRpcs;
