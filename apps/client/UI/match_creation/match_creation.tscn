@@ -26,6 +26,25 @@ text = "Gamemode"
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
+[node name="StandardContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Standard" type="Button" parent="HBoxContainer/StandardContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_lpf30")
+text = "Standard"
+autowrap_mode = 2
+
+[node name="StandardRanked" type="Button" parent="HBoxContainer/StandardContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_lpf30")
+text = "Standard Ranked"
+autowrap_mode = 2
+
 [node name="ClassicContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
@@ -43,25 +62,6 @@ layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("1_lpf30")
 text = "Classic Ranked"
-autowrap_mode = 2
-
-[node name="PrescienceContainer" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Prescience" type="Button" parent="HBoxContainer/PrescienceContainer"]
-custom_minimum_size = Vector2(120, 60)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("1_lpf30")
-text = "Prescience"
-autowrap_mode = 2
-
-[node name="PrescienceRanked" type="Button" parent="HBoxContainer/PrescienceContainer"]
-custom_minimum_size = Vector2(120, 60)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("1_lpf30")
-text = "Prescience Ranked"
 autowrap_mode = 2
 
 [node name="Custom" type="Button" parent="HBoxContainer"]

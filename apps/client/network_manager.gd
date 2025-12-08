@@ -76,4 +76,4 @@ func fetch_rpc(method: StringName, ...args: Array) -> Variant:
 		if sig_req_id == req_id:
 			var message: Variant = sig_args[1]
 			return message
-	return "should not happen!"
+	return -1

@@ -1,8 +1,8 @@
-import matches from "../rpc/matches.js";
-import rooms from "../rooms.js";
-import RPC from "../types/RPC.js";
+import RPC from "./rpcTypes.js";
+import matchRpcs from "./matches.js";
+import lobbyRpcs from "../lobby/lobby.js";
 
-export const rpcs = { ...matches, ...rooms };
+export const rpcs = { ...matchRpcs, ...lobbyRpcs };
 
 export default function rpcHandler(rpc: RPC) {
   const handler = rpcs[rpc.method];
