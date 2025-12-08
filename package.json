@@ -20,7 +20,7 @@
     "export:game": "node scripts/godot-export.js"
   },
   "engines": {
-    "node": ">=22.19.0"
+    "node": ">=24.11.1"
   },
   "packageManager": "pnpm@10.24.0",
   "workspaces": [
@@ -28,6 +28,6 @@
     "packages/*"
   ],
   "devDependencies": {
-    "prettier": "^3.6.2"
+    "prettier": "^3.7.4"
   }
 }
