@@ -1,5 +1,3 @@
-import { RPCContext } from "./types/RPC.js";
-
 export type Room = {
   name?: string;
   players: number[];
@@ -16,17 +14,3 @@ export const exampleMatches = new Map<number, Room>(
     makeRoom({ name: `Match ${i + 1}`, players: [] }),
   ]),
 );
-
-// Clients in lobby will receive updates about available matches
-export const lobby: Room = makeRoom({ players: [] });
-
-function subscribe_to_lobby(ctx: RPCContext) {
-  if (lobby.players.includes(ctx.client_id)) {
-    throw new Error("Client is already in the lobby");
-  }
-  lobby.players.push(ctx.client_id);
-}
-
-const roomRpcs = { subscribe_to_lobby };
-
-export default roomRpcs;

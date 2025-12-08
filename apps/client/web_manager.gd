@@ -2,7 +2,7 @@ extends Node
 
 var window := JavaScriptBridge.get_interface("window")
 var console: = JavaScriptBridge.get_interface("console")
-var callback_ref := JavaScriptBridge.create_callback(recieve_web_info)
+var callback_ref := JavaScriptBridge.create_callback(receive_web_info)
 
 signal got_web_info(info: Variant)
 
@@ -18,7 +18,7 @@ func _ready() -> void:
 	@warning_ignore("unsafe_method_access")
 	console.log("Web Manager Ready")
 
-func recieve_web_info(args: Array) -> void:
+func receive_web_info(args: Array) -> void:
 	var message: Variant = args[0].data
 	got_web_info.emit(message)
 	@warning_ignore("unsafe_method_access")
