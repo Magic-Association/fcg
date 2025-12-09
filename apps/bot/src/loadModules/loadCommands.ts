@@ -24,20 +24,15 @@ export default async function loadCommandModules(): Promise<SlashCommandCollecti
   for (const file of files) {
     try {
       const commandPath = join(commandsDir, file);
-      const commandModule = (await import(
-        pathToFileURL(commandPath).href,
-      )) as { default: unknown };
+      const commandModule = (await import(pathToFileURL(commandPath).href)) as {
+        default: unknown;
+      };
       const command = commandModule.default;
-      if (!command || typeof command !== "object") {
-        console.error(`Command module ${file} has no default export object`);
+      if (!isSlashCommand(command)) {
+        console.error(`Command module ${file} is not a valid SlashCommand`);
         continue;
       }
-      const slashCommand = command as { data?: { name?: string } };
-      if (!slashCommand.data?.name) {
-        console.error(`Command module ${file} missing data.name`);
-        continue;
-      }
-      commands.set(slashCommand.data.name, command);
+      commands.set(command.data.name, command);
     } catch (error) {
       console.error(`Error loading command ${file}:`, error);
     }
