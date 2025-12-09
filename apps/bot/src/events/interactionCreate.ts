@@ -68,7 +68,7 @@ function getCommand(
     if (interaction.isAutocomplete()) {
       if (!command.autocomplete) {
         console.error(`No autocomplete handler for ${interaction.commandName}`);
-        interaction.respond([]);
+        void interaction.respond([]);
         return;
       }
     }
@@ -80,7 +80,7 @@ function getCommand(
   console.error(handlerNotFound);
 
   if (interaction.isRepliable()) {
-    interaction.reply({
+    void interaction.reply({
       content: handlerNotFound,
       flags: MessageFlags.Ephemeral,
     });
