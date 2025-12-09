@@ -1,6 +1,8 @@
+import { WebSocket } from "ws";
 import { rpcs } from "./rpcHandler.js";
 
 export type RPCContext = {
+  ws: WebSocket;
   client_id: number;
 };
 

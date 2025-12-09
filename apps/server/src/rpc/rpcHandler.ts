@@ -1,8 +1,9 @@
 import RPC from "./rpcTypes.js";
 import matchRpcs from "./matches.js";
 import lobbyRpcs from "../lobby/lobby.js";
+import hello from "./hello.js";
 
-export const rpcs = { ...matchRpcs, ...lobbyRpcs };
+export const rpcs = { ...matchRpcs, ...lobbyRpcs, hello };
 
 export default function rpcHandler(rpc: RPC) {
   const handler = rpcs[rpc.method];
