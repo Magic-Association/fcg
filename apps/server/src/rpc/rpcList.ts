@@ -1,7 +1,7 @@
 import { RPCContext } from "./rpcTypes.js";
 import matchRpcs from "./matches.js";
 import lobbyRpcs from "../lobby/lobby.js";
-import hello from "./hello.js";
+import { hello } from "./hello.js";
 
 // Add new RPC methods here
 const rpcs = { ...matchRpcs, ...lobbyRpcs, hello };

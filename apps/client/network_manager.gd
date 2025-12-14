@@ -4,7 +4,9 @@ const SERVER_URL = "ws://localhost:5026"
 
 signal connected_to_server
 signal connection_closed
-signal message_received(req_id: int, message: Variant)
+signal response_received(req_id: int, message: Variant)
+signal broadcast_received(req_id: int, message: Variant)
+
 
 var client_id := 1
 var ws := WebSocketPeer.new()
@@ -40,7 +42,9 @@ func _process(_delta: float) -> void:
 			print("Received: ", message)
 			var parsed: Variant = JSON.parse_string(str(message))
 			if parsed.req_id:
-				message_received.emit(parsed.req_id, parsed)
+				response_received.emit(parsed.req_id, parsed)
+			else:
+				broadcast_received.emit(parsed)
 		
 func get_message() -> Variant:
 	if not ws.get_available_packet_count():
@@ -71,7 +75,7 @@ func s_rpc(method: StringName, ...args: Array) -> int:
 func fetch_rpc(method: StringName, ...args: Array) -> Variant:
 	var req_id: int = s_rpc.callv([method] + args)
 	while true:
-		var sig_args: Variant = await message_received
+		var sig_args: Variant = await response_received
 		var sig_req_id: int = sig_args[0]
 		if sig_req_id == req_id:
 			var message: Variant = sig_args[1]

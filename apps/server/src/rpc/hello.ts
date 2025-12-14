@@ -6,11 +6,10 @@ import { list_matches } from "./matches.js";
 // client_id -> WebSocket
 const connectionMap = new Map<number, WebSocket>();
 
-function hello(ctx: RPCContext) {
+export function hello(ctx: RPCContext) {
   connectionMap.set(ctx.client_id, ctx.ws);
-  console.log(connectionMap);
   subscribe_to_lobby(ctx);
-  return list_matches();
+  return list_matches(ctx);
 }
 
-export default hello;
+export default connectionMap;
