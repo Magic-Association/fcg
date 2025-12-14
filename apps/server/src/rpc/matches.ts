@@ -1,5 +1,6 @@
 import { RPCContext } from "./rpcTypes.js";
 import { Room, exampleMatches, makeRoom } from "../rooms.js";
+import lobbyBroadcast from "../broadcast/lobbyBroadcast.js";
 
 const matches = new Map<number, Room>([...exampleMatches]);
 
@@ -9,6 +10,7 @@ function create_match(ctx: RPCContext) {
   const matchId = lastMatchRoomId++;
   const match: Room = makeRoom({ players: [ctx.client_id] });
   matches.set(matchId, match);
+  lobbyBroadcast({ action: "update", payload: match });
   return matchId;
 }
 
@@ -18,6 +20,7 @@ function join_match(ctx: RPCContext, matchId: number) {
     throw new Error(`Match ${matchId} does not exist`);
   }
   match.players.push(ctx.client_id);
+  lobbyBroadcast({ action: "update", payload: match });
 }
 
 export function list_matches(_ctx: RPCContext) {
