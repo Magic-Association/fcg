@@ -9,7 +9,7 @@ export default function increaseErrorCount() {
   errorCount++;
   if (errorCount >= MAX_ERRORS) {
     console.error("Max error limit reached. Shutting down...");
-    void shutdown();
+    shutdown();
     return;
   }
   if (!errorDecayInterval) {
