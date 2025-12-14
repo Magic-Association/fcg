@@ -5,7 +5,7 @@ export function SignInButton() {
   return (
     <button
       onClick={() => {
-        void signIn();
+        signIn();
       }}
       className="bg-indigo-500 text-white px-4 py-2 rounded hover:cursor-pointer"
     >
