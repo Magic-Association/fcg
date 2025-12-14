@@ -62,6 +62,8 @@ export default defineConfig([
       ],
       "@typescript-eslint/no-base-to-string": "off",
 	  "@typescript-eslint/restrict-template-expressions": "off",
+      "@typescript-eslint/no-floating-promises": "off",
+      "@typescript-eslint/no-misused-promises": "off",
     },
   },
   {
