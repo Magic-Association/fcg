@@ -1,15 +1,16 @@
-import RPC from "./rpcTypes.js";
-import matchRpcs from "./matches.js";
-import lobbyRpcs from "../lobby/lobby.js";
-import hello from "./hello.js";
+import RPC, { RPCContext } from "./rpcTypes.js";
+import { WebSocket } from "ws";
+import rpcs from "./rpcList.js";
 
-export const rpcs = { ...matchRpcs, ...lobbyRpcs, hello };
-
-export default function rpcHandler(rpc: RPC) {
-  const handler = rpcs[rpc.method];
-  if (!handler) {
+export default function rpcHandler(ws: WebSocket, rpc: RPC) {
+  if (!(rpc.method in rpcs)) {
     throw new Error(`Unknown RPC method: ${rpc.method}`);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any
-  return (handler as any)(...rpc.args) as ReturnType<typeof handler>;
+
+  const handler = rpcs[rpc.method];
+  const ctx: RPCContext = { ws, client_id: rpc.client_id };
+  const params = [ctx, ...rpc.args] as Parameters<typeof handler>;
+
+  // @ts-expect-error dynamic call
+  return handler(...params);
 }

@@ -20,7 +20,7 @@ function join_match(ctx: RPCContext, matchId: number) {
   match.players.push(ctx.client_id);
 }
 
-export function list_matches() {
+export function list_matches(_ctx: RPCContext) {
   return Array.from(matches.entries());
 }
 

@@ -2,20 +2,22 @@
 extends VBoxContainer
 
 const match_entry := preload("res://UI/match_entry.tscn")
+
+var matches := []
 	
 func _ready() -> void:
 	if Engine.is_editor_hint():
-		var mock_rooms := []
 		for i in 20:
-			mock_rooms.append([i, {"name": "Mock Match %d" % (i + 1)}])
-		display_matches(mock_rooms)
+			matches.append([i, {"name": "Mock Match %d" % (i + 1)}])
+		display_matches()
 	else:
 		await Network.connected_to_server
-		var res: Variant = await Network.fetch_rpc("list_matches")
+		var res: Variant = await Network.fetch_rpc("hello")
 		@warning_ignore("unsafe_cast")
-		display_matches(res.result as Array)
+		matches = res.result as Array
+		display_matches()
 		
-func display_matches(matches: Array) -> void:
+func display_matches() -> void:
 	for room: Array in matches:
 		var data: Dictionary = room[1]
 		var entry := match_entry.instantiate()

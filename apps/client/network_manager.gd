@@ -69,7 +69,7 @@ func s_rpc(method: StringName, ...args: Array) -> int:
 	return req_id
 	
 func fetch_rpc(method: StringName, ...args: Array) -> Variant:
-	var req_id := s_rpc(method, args)
+	var req_id: int = s_rpc.callv([method] + args)
 	while true:
 		var sig_args: Variant = await message_received
 		var sig_req_id: int = sig_args[0]
