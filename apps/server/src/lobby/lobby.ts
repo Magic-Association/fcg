@@ -1,4 +1,4 @@
-import { RPCContext } from "../rpc/rpcTypes.js";
+import { RPCContext } from "../rpc/context.js";
 import { makeRoom, Room } from "../rooms.js";
 
 // Clients in lobby will receive updates about available matches
@@ -12,5 +12,4 @@ export function subscribe_to_lobby(ctx: RPCContext) {
 }
 
 const lobbyRpcs = { subscribe_to_lobby };
-
 export default lobbyRpcs;

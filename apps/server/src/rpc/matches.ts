@@ -1,4 +1,4 @@
-import { RPCContext } from "./rpcTypes.js";
+import { RPCContext } from "./context.js";
 import { Room, exampleMatches, makeRoom } from "../rooms.js";
 import lobbyBroadcast from "../broadcast/lobbyBroadcast.js";
 
@@ -23,10 +23,11 @@ function join_match(ctx: RPCContext, matchId: number) {
   lobbyBroadcast({ action: "update", payload: match });
 }
 
-export function list_matches(_ctx: RPCContext) {
+function list_matches(_ctx: RPCContext) {
   return Array.from(matches.entries());
 }
 
 const matchRpcs = { join_match, create_match, list_matches };
 
+export { join_match, create_match, list_matches };
 export default matchRpcs;

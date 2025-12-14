@@ -1,10 +1,7 @@
-import { WebSocket } from "ws";
-import rpcs from "./rpcList.js";
+import { rpcs } from "./rpcs.js";
+export type { RPCContext } from "./context.js";
 
-export type RPCContext = {
-  ws: WebSocket;
-  client_id: number;
-};
+import type { RPCContext } from "./context.js";
 
 type RemoveContext<T extends unknown[]> = T extends [RPCContext, ...infer Rest]
   ? Rest
