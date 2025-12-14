@@ -26,6 +26,15 @@ export default function GameWindow({ src, info }: GameWindowProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
+    const sendInfoToGame = () => {
+      const target = iframeRef.current?.contentWindow;
+      if (!target) {
+        console.warn("Godot iframe not ready to receive messages");
+        return;
+      }
+      target.postMessage(info, "*");
+    };
+
     const handleGodotReady = (event: MessageEvent<unknown>) => {
       const data = event.data;
       if (typeof data === "string") {
@@ -33,7 +42,7 @@ export default function GameWindow({ src, info }: GameWindowProps) {
           const parsed = JSON.parse(data) as unknown;
           if (isGodotReadyMessage(parsed) && parsed.godot_client_ready) {
             console.log("Sent web info");
-            iframeRef.current?.contentWindow?.postMessage(info, "*");
+            sendInfoToGame();
           }
         } catch (error) {
           console.error("Failed to parse Godot message", error);
@@ -41,7 +50,7 @@ export default function GameWindow({ src, info }: GameWindowProps) {
       } else if (isGodotReadyMessage(data) && data.godot_client_ready) {
         // Structured clone already parsed by browser
         console.log("Sent web info");
-        iframeRef.current?.contentWindow?.postMessage(info, "*");
+        sendInfoToGame();
       }
     };
 
