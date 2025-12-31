@@ -1,16 +1,16 @@
-import RPC, { RPCContext } from "./rpcTypes.js";
 import { WebSocket } from "ws";
-import rpcs from "./rpcList.js";
+import RPC from "./rpcTypes.js";
+import { RPCContext } from "./context.js";
+import { rpcs } from "./rpcs.js";
 
-export default function rpcHandler(ws: WebSocket, rpc: RPC) {
-  if (!(rpc.method in rpcs)) {
-    throw new Error(`Unknown RPC method: ${rpc.method}`);
+export default function rpcHandler(ws: WebSocket, rpcMessage: RPC) {
+  const handler = rpcs[rpcMessage.method];
+  if (!handler) {
+    throw new Error(`Unknown RPC method: ${rpcMessage.method}`);
   }
 
-  const handler = rpcs[rpc.method];
-  const ctx: RPCContext = { ws, client_id: rpc.client_id };
-  const params = [ctx, ...rpc.args] as Parameters<typeof handler>;
-
-  // @ts-expect-error dynamic call
-  return handler(...params);
+  const ctx: RPCContext = { client_id: rpcMessage.client_id, ws };
+  // rpcMessage.args already are validated by the type derived from rpcs
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  return handler(ctx, ...rpcMessage.args);
 }
