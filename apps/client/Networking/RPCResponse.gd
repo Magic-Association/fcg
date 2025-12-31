@@ -1,4 +1,5 @@
 class_name RPCResponse
+
 var req_id: int
 var method: String
 var result: Variant

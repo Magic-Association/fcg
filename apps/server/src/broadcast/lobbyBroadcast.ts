@@ -4,11 +4,11 @@ import connectionMap from "../rpc/hello.js";
 
 type LobbyBroadcast =
   | {
-      action: "update";
+      action: "update_match";
       payload: Room;
     }
   | {
-      action: "remove";
+      action: "remove_match";
       payload: number;
     };
 
@@ -16,6 +16,6 @@ export default function lobbyBroadcast(message: LobbyBroadcast) {
   for (const clientId of lobby.players) {
     const ws = connectionMap.get(clientId);
     if (!ws) continue;
-    ws.send(JSON.stringify({ ...message, type: "matchList" }));
+    ws.send(JSON.stringify(message));
   }
 }

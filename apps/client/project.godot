@@ -17,8 +17,9 @@ config/icon="res://Assets/placeholders/icon.svg"
 
 [autoload]
 
-Network="*res://network_manager.gd"
-Web="*res://web_manager.gd"
+Network="*res://Networking/network_manager.gd"
+Web="*res://Networking/web_manager.gd"
+Broadcasts="*res://Networking/BroadcastHandler.gd"
 
 [debug]
 
@@ -32,6 +33,7 @@ gdscript/warnings/unsafe_call_argument=1
 
 folder_colors={
 "res://Assets/": "blue",
+"res://Networking/": "green",
 "res://UI/": "purple"
 }
 
