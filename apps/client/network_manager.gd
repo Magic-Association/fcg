@@ -7,7 +7,6 @@ signal connection_closed
 signal response_received(req_id: int, message: Variant)
 signal broadcast_received(req_id: int, message: Variant)
 
-
 var client_id := 1
 var ws := WebSocketPeer.new()
 var last_state := WebSocketPeer.STATE_CLOSED
@@ -72,12 +71,15 @@ func s_rpc(method: StringName, ...args: Array) -> int:
 	s_string(JSON.stringify(data))
 	return req_id
 	
-func fetch_rpc(method: StringName, ...args: Array) -> Variant:
+func fetch_rpc(method: StringName, ...args: Array) -> RPCResponse:
+	if last_state != WebSocketPeer.STATE_OPEN:
+		await connected_to_server
+		
 	var req_id: int = s_rpc.callv([method] + args)
 	while true:
 		var sig_args: Variant = await response_received
 		var sig_req_id: int = sig_args[0]
 		if sig_req_id == req_id:
-			var message: Variant = sig_args[1]
-			return message
-	return -1
+			var message: Dictionary = sig_args[1]
+			return RPCResponse.new(message)
+	return RPCResponse.new({}) # intended to be unreachable

@@ -6,7 +6,7 @@ export const lobby: Room = makeRoom();
 
 export function subscribe_to_lobby(ctx: RPCContext) {
   if (lobby.players.includes(ctx.client_id)) {
-    throw new Error("Client is already in the lobby");
+    return;
   }
   lobby.players.push(ctx.client_id);
 }

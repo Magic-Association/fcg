@@ -11,10 +11,7 @@ func _ready() -> void:
 			matches.append([i, {"name": "Mock Match %d" % (i + 1)}])
 		display_matches()
 	else:
-		await Network.connected_to_server
-		var res: Variant = await Network.fetch_rpc("hello")
-		@warning_ignore("unsafe_cast")
-		matches = res.result as Array
+		matches = await RPCRegistry.hello()
 		display_matches()
 		
 func display_matches() -> void:
