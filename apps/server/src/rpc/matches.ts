@@ -10,7 +10,7 @@ function create_match(ctx: RPCContext) {
   const matchId = lastMatchRoomId++;
   const match: Room = makeRoom({ players: [ctx.client_id] });
   matches.set(matchId, match);
-  lobbyBroadcast({ action: "update", payload: match });
+  lobbyBroadcast({ action: "update_match", payload: match });
   return matchId;
 }
 
@@ -20,7 +20,7 @@ function join_match(ctx: RPCContext, matchId: number) {
     throw new Error(`Match ${matchId} does not exist`);
   }
   match.players.push(ctx.client_id);
-  lobbyBroadcast({ action: "update", payload: match });
+  lobbyBroadcast({ action: "update_match", payload: match });
 }
 
 function list_matches(_ctx: RPCContext) {

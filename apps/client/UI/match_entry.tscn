@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bn3cjy4wqsqx1"]
+[gd_scene load_steps=2 format=3 uid="uid://bn3cjy4wqsqx1"]
+
+[ext_resource type="Script" uid="uid://dcoqtqoc5o60n" path="res://UI/match_entry.gd" id="1_6ndt5"]
 
 [node name="MatchEntry" type="HBoxContainer"]
 anchors_preset = 14
@@ -12,6 +14,7 @@ grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 alignment = 2
+script = ExtResource("1_6ndt5")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

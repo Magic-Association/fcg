@@ -83,6 +83,6 @@ func fetch_rpc(method: StringName, ...args: Array) -> RPCResponse:
 		var sig_args: Variant = await response_received
 		var sig_req_id: int = sig_args[0]
 		if sig_req_id == req_id:
-			var message: Dictionary = sig_args[1]
-			return RPCResponse.new(message)
+			var response: RPCResponse = sig_args[1]
+			return response
 	return RPCResponse.new({}) # intended to be unreachable
