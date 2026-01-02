@@ -24,7 +24,7 @@ function join_match(ctx: RPCContext, matchId: number) {
 }
 
 function list_matches(_ctx: RPCContext) {
-  return Array.from(matches.entries());
+  return Array.from(matches.values());
 }
 
 const matchRpcs = { join_match, create_match, list_matches };

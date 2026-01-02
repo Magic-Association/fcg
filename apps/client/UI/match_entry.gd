@@ -7,12 +7,12 @@ class_name MatchEntry
 var room_id: int
 var text: String
 
-func setup(i_room_id: int, i_match_data: Dictionary) -> void:
-	room_id = i_room_id
-	update_data(i_match_data)
+func setup(match_data: Room) -> void:
+	room_id = match_data.id
+	update_data(match_data)
 
-func update_data(new_match_data: Dictionary) -> void:
-	text = new_match_data.get("name", "No Name")
+func update_data(new_match_data: Room) -> void:
+	text = new_match_data.get("name")
 	update_label()
 
 func update_label() -> void:

@@ -22,14 +22,6 @@ Network="*res://Networking/network_manager.gd"
 Web="*res://Networking/web_manager.gd"
 Broadcasts="*res://Networking/BroadcastHandler.gd"
 
-[debug]
-
-gdscript/warnings/untyped_declaration=1
-gdscript/warnings/unsafe_property_access=1
-gdscript/warnings/unsafe_method_access=1
-gdscript/warnings/unsafe_cast=1
-gdscript/warnings/unsafe_call_argument=1
-
 [file_customization]
 
 folder_colors={
