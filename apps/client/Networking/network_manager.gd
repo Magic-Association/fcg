@@ -7,17 +7,25 @@ signal connection_closed
 signal response_received(req_id: int, message: RPCResponse)
 signal broadcast_received(req_id: int, message: Broadcast)
 
-var client_id := 1
+var client_id: int
 var ws := WebSocketPeer.new()
 var last_state := WebSocketPeer.STATE_CLOSED
 var next_req_id := 1
 
 func _ready() -> void:
+	set_client_id()
+	
 	var err := ws.connect_to_url(SERVER_URL)
 	if err:
 		print("Could not connect to server at ", SERVER_URL)
 		set_process(false)
 	print("Connecting to server at %s..." % SERVER_URL)
+
+func set_client_id() -> void:
+	var args := OS.get_cmdline_args()
+	var client_id_arg = Array(args).filter(func(arg): return arg.begins_with("--client_id="))
+	client_id = 1 if client_id_arg.is_empty() else client_id_arg[0].split("=")[1].to_int()
+	print_rich("[color=green]", "Client ID: ", client_id, "[/color]")
 	
 func _process(_delta: float) -> void:
 	ws.poll()
