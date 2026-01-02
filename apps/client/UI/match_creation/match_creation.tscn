@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7gnne6yvrywc"]
+[gd_scene load_steps=3 format=3 uid="uid://b7gnne6yvrywc"]
 
 [ext_resource type="ButtonGroup" uid="uid://b646ndbstc8mi" path="res://UI/match_creation/gamemode_group.tres" id="1_lpf30"]
+[ext_resource type="Script" uid="uid://bronc07n77tmg" path="res://UI/match_creation/create_match.gd" id="2_44rt2"]
 
 [node name="MatchCreation" type="VBoxContainer"]
 anchors_preset = 9
@@ -77,6 +78,9 @@ autowrap_mode = 2
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="CreateMatch" type="Button" parent="."]
 layout_mode = 2
 text = "Create Match"
+script = ExtResource("2_44rt2")
+
+[connection signal="pressed" from="CreateMatch" to="CreateMatch" method="_on_pressed"]

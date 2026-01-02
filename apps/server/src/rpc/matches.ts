@@ -4,14 +4,11 @@ import lobbyBroadcast from "../broadcast/lobbyBroadcast.js";
 
 const matches = new Map<number, Room>([...exampleMatches]);
 
-let lastMatchRoomId = 1;
-
 function create_match(ctx: RPCContext) {
-  const matchId = lastMatchRoomId++;
   const match: Room = makeRoom({ players: [ctx.client_id] });
-  matches.set(matchId, match);
+  matches.set(match.id, match);
   lobbyBroadcast({ action: "update_match", payload: match });
-  return matchId;
+  return match.id;
 }
 
 function join_match(ctx: RPCContext, matchId: number) {

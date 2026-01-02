@@ -9,19 +9,20 @@ var match_entries: Dictionary[int, MatchEntry] = {}
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		for i in 20:
-			matches[i] = Room.new({"name": "Mock Match %d" % (i + 1)})
+			create_match_entry(Room.new({"name": "Mock Match %d" % (i + 1)}))
 	else:
 		Broadcasts.update_match.connect(_on_update_match)
 		Broadcasts.remove_match.connect(_on_remove_match)
 	
 		var match_data := await RPCRegistry.hello()
 		for room: Room in match_data:
-			matches[room.id] = room
+			create_match_entry(room)
 	display_matches()
 	
 func create_match_entry(match_data: Room) -> void:
 	var match_entry: MatchEntry = MATCH_ENTRY.instantiate()
 	add_child(match_entry)
+	move_child(match_entry, 0)
 	match_entry.setup(match_data)
 	match_entries[match_data.id] = match_entry
 		
