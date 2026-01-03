@@ -9,7 +9,13 @@ var match_entries: Dictionary[int, MatchEntry] = {}
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		for i in 10:
-			create_match_entry(Room.new({"id": i, "name": "Mock Match %d" % (i + 1)}))
+			create_match_entry(Room.new({
+				"id": i,
+				"gamemode": {
+					"name": "Mock Match %d"% (i + 1),
+					"teamSetup": [{ "size": 1 }, { "size": 1 }]
+				}
+			}))
 	else:
 		Broadcasts.update_match.connect(_on_update_match)
 		Broadcasts.remove_match.connect(_on_remove_match)
