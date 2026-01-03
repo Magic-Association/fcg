@@ -10,8 +10,8 @@ static func hello() -> Array[Room]:
 		rooms.append(Room.new(room_data))
 	return rooms
 
-static func create_match() -> int:
-	var res: RPCResponse = await Network.fetch_rpc("create_match")
+static func create_match(gamemode: StringName) -> int:
+	var res: RPCResponse = await Network.fetch_rpc("create_match", gamemode)
 	if not res.result is int:
 		return -1
 	return res.result

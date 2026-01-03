@@ -9,16 +9,6 @@ anchor_bottom = 1.0
 offset_right = 368.0
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Match Name"
-
-[node name="LineEdit" type="LineEdit" parent="."]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-placeholder_text = "username's match"
-
 [node name="Label2" type="Label" parent="."]
 layout_mode = 2
 size_flags_vertical = 1
@@ -37,6 +27,7 @@ toggle_mode = true
 button_group = ExtResource("1_lpf30")
 text = "Standard"
 autowrap_mode = 2
+metadata/gamemode = &"Standard"
 
 [node name="StandardRanked" type="Button" parent="HBoxContainer/StandardContainer"]
 custom_minimum_size = Vector2(120, 60)
@@ -56,6 +47,7 @@ toggle_mode = true
 button_group = ExtResource("1_lpf30")
 text = "Classic"
 autowrap_mode = 2
+metadata/gamemode = &"Classic"
 
 [node name="ClassicRanked" type="Button" parent="HBoxContainer/ClassicContainer"]
 custom_minimum_size = Vector2(120, 60)
@@ -71,15 +63,16 @@ layout_mode = 2
 size_flags_vertical = 4
 toggle_mode = true
 button_group = ExtResource("1_lpf30")
-text = "Custom
-"
+text = "Custom"
 autowrap_mode = 2
+metadata/gamemode = &"Custom"
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
 
 [node name="CreateMatch" type="Button" parent="."]
 layout_mode = 2
+disabled = true
 text = "Create Match"
 script = ExtResource("2_44rt2")
 

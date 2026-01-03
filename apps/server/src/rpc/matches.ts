@@ -1,11 +1,16 @@
 import { RPCContext } from "./context.js";
 import { Room, exampleMatches, makeRoom } from "../rooms.js";
 import lobbyBroadcast from "../broadcast/lobbyBroadcast.js";
+import { Gamemodes } from "../game/Gamemode.js";
 
 const matches = new Map<number, Room>([...exampleMatches]);
 
-function create_match(ctx: RPCContext) {
-  const match: Room = makeRoom({ players: [ctx.client_id] });
+function create_match(ctx: RPCContext, gamemodeName: string) {
+  if (!Object.keys(Gamemodes).includes(gamemodeName)) {
+    throw new Error(`Invalid gamemode: ${gamemodeName}`);
+  }
+  const gamemode = Gamemodes[gamemodeName as keyof typeof Gamemodes];
+  const match: Room = makeRoom({ players: [ctx.client_id], gamemode });
   matches.set(match.id, match);
   lobbyBroadcast({ action: "update_match", payload: match });
   return match.id;
