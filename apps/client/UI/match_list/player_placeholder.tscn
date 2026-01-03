@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm5sv6nkqfwnd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkgc5"]
+bg_color = Color(8.731842e-06, 8.731845e-06, 8.731833e-06, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[node name="PlayerPlaceholder" type="HBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -32.0
+offset_right = 154.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AvatarMask" type="PanelContainer" parent="."]
+clip_children = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_vkgc5")
+
+[node name="Avatar" type="ColorRect" parent="AvatarMask"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.2513019, 0.25130188, 0.25130185, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Username" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(240, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.2513019, 0.25130188, 0.25130185, 1)

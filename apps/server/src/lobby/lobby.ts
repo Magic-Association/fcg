@@ -2,7 +2,7 @@ import { RPCContext } from "../rpc/context.js";
 import { makeRoom, Room } from "../rooms.js";
 
 // Clients in lobby will receive updates about available matches
-export const lobby: Room = makeRoom();
+export const lobby: Room = makeRoom({ gamemode: "Lobby"});
 
 export function subscribe_to_lobby(ctx: RPCContext) {
   if (lobby.players.includes(ctx.client_id)) {

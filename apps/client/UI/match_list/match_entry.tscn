@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn3cjy4wqsqx1"]
+
+[ext_resource type="Script" uid="uid://dcoqtqoc5o60n" path="res://UI/match_list/match_entry.gd" id="1_6ndt5"]
+
+[node name="MatchEntry" type="PanelContainer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+script = ExtResource("1_6ndt5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Gamemode" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Gamemode Here"
+
+[node name="Players" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Join" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Join"

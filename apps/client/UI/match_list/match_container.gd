@@ -1,7 +1,7 @@
 @tool
 extends VBoxContainer
 
-const MATCH_ENTRY = preload("res://UI/match_entry.tscn")
+const MATCH_ENTRY = preload("res://UI/match_list/match_entry.tscn")
 
 var matches: Dictionary[int, Room] = {}
 var match_entries: Dictionary[int, MatchEntry] = {}
