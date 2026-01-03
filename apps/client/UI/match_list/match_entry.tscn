@@ -24,10 +24,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Gamemode Here"
 
-[node name="Players" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Players" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+columns = 2
 
 [node name="Join" type="Button" parent="VBoxContainer"]
 layout_mode = 2

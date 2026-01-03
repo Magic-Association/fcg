@@ -20,6 +20,6 @@ export const Gamemodes = {
   },
   Custom: {
     name: "Custom",
-    teamSetup: oneVsOne,
+    teamSetup: [{ size: 3 }], // for example
   },
 } as const satisfies Record<string, Gamemode>;

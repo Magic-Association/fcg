@@ -3,7 +3,7 @@ extends PanelContainer
 class_name MatchEntry
 
 @onready var label: Label = $VBoxContainer/Gamemode
-@onready var players: HBoxContainer = $VBoxContainer/Players
+@onready var players: GridContainer = $VBoxContainer/Players
 
 const PLAYER_PLACEHOLDER = preload("res://UI/match_list/player_placeholder.tscn")
 
