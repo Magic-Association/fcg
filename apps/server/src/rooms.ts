@@ -14,7 +14,7 @@ export function makeRoom(
 }
 
 export const exampleMatches = new Map<number, Room>(
-  Array.from({ length: 20 }, (_, i) => [
+  Array.from({ length: 10 }, (_, i) => [
     i,
     makeRoom({ name: `Match ${i + 1}` }),
   ]),

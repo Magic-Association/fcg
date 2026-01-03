@@ -1,8 +1,8 @@
 @tool
-extends HBoxContainer
+extends PanelContainer
 class_name MatchEntry
 
-@onready var label: Label = $Label
+@onready var label: Label = $VBoxContainer/Label
 
 var room_id: int
 var text: String
