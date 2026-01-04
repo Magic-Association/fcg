@@ -20,7 +20,7 @@ function onMessage(ws: WebSocket, data: WebSocket.Data) {
   console.log(`Received: ${data}`);
   const rpc = JSON.parse(data.toString()) as RPC;
   try {
-    const result = rpcHandler(rpc);
+    const result = rpcHandler(ws, rpc);
     const response: RPCResponse = {
       req_id: rpc.req_id,
       method: rpc.method,
@@ -28,6 +28,7 @@ function onMessage(ws: WebSocket, data: WebSocket.Data) {
     };
     ws.send(JSON.stringify(response));
   } catch (error) {
+	console.error("Error handling RPC:", error);
     const response: RPCResponse = {
       req_id: rpc.req_id,
       method: rpc.method,

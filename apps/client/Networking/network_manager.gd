@@ -4,19 +4,28 @@ const SERVER_URL = "ws://localhost:5026"
 
 signal connected_to_server
 signal connection_closed
-signal message_received(req_id: int, message: Variant)
+signal response_received(req_id: int, message: RPCResponse)
+signal broadcast_received(req_id: int, message: Broadcast)
 
-var client_id := 1
+var client_id: int
 var ws := WebSocketPeer.new()
 var last_state := WebSocketPeer.STATE_CLOSED
 var next_req_id := 1
 
 func _ready() -> void:
+	set_client_id()
+	
 	var err := ws.connect_to_url(SERVER_URL)
 	if err:
 		print("Could not connect to server at ", SERVER_URL)
 		set_process(false)
 	print("Connecting to server at %s..." % SERVER_URL)
+
+func set_client_id() -> void:
+	var args := OS.get_cmdline_args()
+	var client_id_arg = Array(args).filter(func(arg): return arg.begins_with("--client_id="))
+	client_id = 1 if client_id_arg.is_empty() else client_id_arg[0].split("=")[1].to_int()
+	print_rich("[color=green]", "Client ID: ", client_id, "[/color]")
 	
 func _process(_delta: float) -> void:
 	ws.poll()
@@ -38,9 +47,14 @@ func _process(_delta: float) -> void:
 		var message: Variant = get_message()
 		if message:
 			print("Received: ", message)
-			var parsed: Variant = JSON.parse_string(str(message))
-			if parsed.req_id:
-				message_received.emit(parsed.req_id, parsed)
+			var parsed: Dictionary = JSON.parse_string(str(message))
+			if parsed.has("req_id"):
+				var response: RPCResponse = RPCResponse.new(parsed)
+				response_received.emit(response.req_id, response)
+			elif parsed.has("action"):
+				var broadcast: Broadcast = Broadcast.new(parsed)
+				Broadcasts.handle_broadcast(broadcast)
+				broadcast_received.emit(broadcast)
 		
 func get_message() -> Variant:
 	if not ws.get_available_packet_count():
@@ -68,12 +82,15 @@ func s_rpc(method: StringName, ...args: Array) -> int:
 	s_string(JSON.stringify(data))
 	return req_id
 	
-func fetch_rpc(method: StringName, ...args: Array) -> Variant:
-	var req_id := s_rpc(method, args)
+func fetch_rpc(method: StringName, ...args: Array) -> RPCResponse:
+	if last_state != WebSocketPeer.STATE_OPEN:
+		await connected_to_server
+		
+	var req_id: int = s_rpc.callv([method] + args)
 	while true:
-		var sig_args: Variant = await message_received
+		var sig_args: Variant = await response_received
 		var sig_req_id: int = sig_args[0]
 		if sig_req_id == req_id:
-			var message: Variant = sig_args[1]
-			return message
-	return -1
+			var response: RPCResponse = sig_args[1]
+			return response
+	return RPCResponse.new({}) # intended to be unreachable
