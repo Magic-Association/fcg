@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cm5sv6nkqfwnd"]
 
 [ext_resource type="Script" uid="uid://b2u44r05k6uwt" path="res://UI/match_list/player_slot.gd" id="1_4itwn"]
-[ext_resource type="Texture2D" uid="uid://dio4lp137adyb" path="res://Assets/placeholders/Sprite-0001.png" id="1_w23tt"]
+[ext_resource type="Texture2D" uid="uid://bij5kpvgyfaap" path="res://Assets/placeholders/white.png" id="2_4itwn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkgc5"]
 bg_color = Color(8.731842e-06, 8.731845e-06, 8.731833e-06, 1)
@@ -32,16 +32,18 @@ size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_vkgc5")
 
 [node name="Avatar" type="TextureRect" parent="AvatarMask"]
+modulate = Color(0.30102104, 0.301021, 0.30102098, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("1_w23tt")
+texture = ExtResource("2_4itwn")
 
 [node name="UsernameSpacer" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 4
 
 [node name="Username" type="Label" parent="UsernameSpacer"]
+modulate = Color(0.30102104, 0.301021, 0.30102098, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 18
