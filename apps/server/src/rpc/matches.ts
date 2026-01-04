@@ -21,6 +21,15 @@ function join_match(ctx: RPCContext, matchId: number) {
   if (!match) {
     throw new Error(`Match ${matchId} does not exist`);
   }
+  if (match.players.includes(ctx.client_id)) {
+    throw new Error(`Client ${ctx.client_id} is already in match ${matchId}`);
+  }
+  if (
+    match.gamemode.teamSetup.reduce((sum, team) => sum + team.size, 0) <=
+    match.players.length
+  ) {
+    throw new Error(`Match ${matchId} is full`);
+  }
   match.players.push(ctx.client_id);
   lobbyBroadcast({ action: "update_match", payload: match });
 }

@@ -11,6 +11,5 @@ func _on_pressed() -> void:
 	await RPCRegistry.create_match(selected_gamemode)
 
 func _on_gamemode_selected(button: BaseButton) -> void:
-	print(button)
 	selected_gamemode = button.get_meta("gamemode") if button.has_meta("gamemode") else &"Custom"
 	disabled = false

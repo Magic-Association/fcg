@@ -15,3 +15,6 @@ static func create_match(gamemode: StringName) -> int:
 	if not res.result is int:
 		return -1
 	return res.result
+
+static func join_match(matchId: int) -> void:
+	await Network.fetch_rpc("join_match", matchId)

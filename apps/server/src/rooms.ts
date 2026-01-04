@@ -20,5 +20,8 @@ export function makeRoom(data: Partial<Room> = {}): Room {
 }
 
 export const exampleMatches = new Map<number, Room>(
-  Array.from({ length: 10 }, (_, i) => [i, makeRoom()]),
+  Array.from({ length: 10 }, () => {
+    const room = makeRoom();
+    return [room.id, room];
+  }),
 );
