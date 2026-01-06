@@ -40,6 +40,7 @@ Follow for Game Server, Bot & Website
 4. To test with database, see the below section
 
 ### Database
+
 1. Download Docker Desktop (or Docker) from [their website](https://docs.docker.com/get-started/get-docker/)
 2. Start the database container with `docker-compose up`, add the `--build` flag to build to container
 3. Apply any database migrations with `pnpm run migrate:db`
