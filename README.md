@@ -45,11 +45,3 @@ Follow for Game Server, Bot & Website
 3. Apply any database migrations with `pnpm run migrate:db`
 
 If you make any changes to the database schema, generate a new migration with `pnpm run generate:db`
-
-## Contributing
-
-### Before committing
-
-1. Lint the code with `pnpm run lint`
-2. Format the code with `pnpm run format`
-
