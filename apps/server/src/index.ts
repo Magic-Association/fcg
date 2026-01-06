@@ -28,7 +28,7 @@ function onMessage(ws: WebSocket, data: WebSocket.Data) {
     };
     ws.send(JSON.stringify(response));
   } catch (error) {
-	console.error("Error handling RPC:", error);
+    console.error("Error handling RPC:", error);
     const response: RPCResponse = {
       req_id: rpc.req_id,
       method: rpc.method,
