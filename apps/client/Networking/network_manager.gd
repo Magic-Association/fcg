@@ -5,7 +5,7 @@ const SERVER_URL = "ws://localhost:5026"
 signal connected_to_server
 signal connection_closed
 signal response_received(req_id: int, message: RPCResponse)
-signal broadcast_received(req_id: int, message: Broadcast)
+signal broadcast_received(message: Broadcast)
 
 var client_id: int
 var ws := WebSocketPeer.new()
