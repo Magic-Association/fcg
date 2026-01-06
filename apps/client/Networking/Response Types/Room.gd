@@ -2,7 +2,7 @@ class_name Room
 
 var id: int
 var gamemode: Dictionary
-var players: Array[int]
+var players: Array[int] = []
 
 func _init(data: Dictionary) -> void:
 	id = data.get("id", -1)

@@ -29,9 +29,12 @@ func update_data(new_match_data: Room) -> void:
 	
 	join.disabled = true if players.size() >= max_players else false
 	
-	for i in players.size():
+	for i in max_players:
 		var slot := playersContainer.get_child(i)
-		slot.set_player("Client %s" % players[i])
+		if i < players.size():
+			slot.set_player("Client %s" % players[i])
+		else:
+			slot.clear_player()
 
 func _on_join_pressed() -> void:
 	await RPCRegistry.join_match(room_id)

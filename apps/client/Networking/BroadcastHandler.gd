@@ -1,8 +1,8 @@
 class_name BroadcastHandler
 extends Node
 
-signal update_match(room: Room)
-signal remove_match(roomId: int)
+signal match_updated(room: Room)
+signal match_removed(roomId: int)
 
 func handle_broadcast(broadcast: Broadcast) -> void:
 	var payload: Variant = broadcast.payload
@@ -11,6 +11,6 @@ func handle_broadcast(broadcast: Broadcast) -> void:
 		"update_match":
 			var data: Dictionary = payload
 			var match_data := Room.new(data)
-			update_match.emit(match_data)
+			match_updated.emit(match_data)
 		"remove_match":
-			remove_match.emit(payload)
+			match_removed.emit(payload)

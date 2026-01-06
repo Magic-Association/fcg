@@ -3,7 +3,6 @@ extends VBoxContainer
 
 const MATCH_ENTRY = preload("res://UI/match_list/match_entry.tscn")
 
-var matches: Dictionary[int, Room] = {}
 var match_entries: Dictionary[int, MatchEntry] = {}
 	
 func _ready() -> void:
@@ -17,13 +16,12 @@ func _ready() -> void:
 				}
 			}))
 	else:
-		Broadcasts.update_match.connect(_on_update_match)
-		Broadcasts.remove_match.connect(_on_remove_match)
+		Broadcasts.match_updated.connect(_on_match_updated)
+		Broadcasts.match_removed.connect(_on_match_removed)
 	
 		var match_data := await RPCRegistry.hello()
 		for room: Room in match_data:
 			create_match_entry(room)
-	display_matches()
 	
 func create_match_entry(match_data: Room) -> void:
 	var match_entry: MatchEntry = MATCH_ENTRY.instantiate()
@@ -32,23 +30,17 @@ func create_match_entry(match_data: Room) -> void:
 	match_entry.setup(match_data)
 	match_entries[match_data.id] = match_entry
 		
-func display_matches() -> void:
-	for room_id: int in matches.keys():
-		if match_entries.has(room_id):
-			match_entries[room_id].update_data(matches[room_id])
-		else:
-			create_match_entry(matches[room_id])
-		
-func _on_update_match(room: Room) -> void:
+func _on_match_updated(room: Room) -> void:
 	if match_entries.has(room.id):
 		var match_entry: MatchEntry = match_entries.get(room.id)
 		match_entry.update_data(room)
 	else:
 		create_match_entry(room)
 	
-func _on_remove_match(roomId: int) -> void:
+func _on_match_removed(roomId: int) -> void:
 	if not match_entries.has(roomId):
 		return
 	var match_entry: MatchEntry = match_entries.get(roomId)
+	match_entries.erase(roomId)
 	match_entry.queue_free()
 	
