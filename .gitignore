@@ -12,7 +12,8 @@ dist
 .godot
 
 # godot exports
-apps/website/public/export
+apps/website/public/export/*
+!apps/website/public/export/.gitkeep
 
 # misc
 next-env.d.ts
