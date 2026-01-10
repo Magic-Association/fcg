@@ -1,0 +1,50 @@
+[tools]
+"aqua:godotengine/godot" = "4.5.1-stable"
+
+[vars]
+godot_version = "4.5.1"
+godot_flavor = "stable"
+
+[tasks.install-godot-templates]
+description = "Install Godot HTML5 export templates for the local user"
+run = """
+set -eu
+ver="{{vars.godot_version}}"
+flavor="{{vars.godot_flavor}}"
+dest="$HOME/.local/share/godot/export_templates/${ver}.${flavor}"
+debug="$dest/web_nothreads_debug.zip"
+release="$dest/web_nothreads_release.zip"
+if [ -f "$debug" ] && [ -f "$release" ]; then
+  echo "Export templates already installed at $dest"
+  exit 0
+fi
+if ! command -v unzip >/dev/null 2>&1; then
+  echo "unzip is required to install export templates. Install unzip and retry." >&2
+  exit 1
+fi
+rm -rf "$dest"
+mkdir -p "$dest"
+curl -L -o /tmp/godot-templates.tpz "https://downloads.godotengine.org/?version=${ver}&flavor=${flavor}&slug=export_templates.tpz&platform=templates"
+tmpdir="/tmp/godot-templates"
+rm -rf "$tmpdir"
+mkdir -p "$tmpdir"
+unzip -o /tmp/godot-templates.tpz -d "$tmpdir"
+cp "$tmpdir"/templates/* "$dest/"
+"""
+
+[tasks.export-game]
+description = "Export the Godot game to apps/website/public/export"
+run = """
+mise run install-godot-templates
+pnpm run export:game
+"""
+
+[tasks.refresh-godot-templates]
+description = "Reinstall Godot HTML5 export templates for the pinned version"
+run = """
+set -eu
+ver="{{vars.godot_version}}"
+flavor="{{vars.godot_flavor}}"
+rm -rf "$HOME/.local/share/godot/export_templates/${ver}.${flavor}"
+mise run install-godot-templates
+"""
