@@ -5,7 +5,11 @@ import path from "path";
 async function deleteOldExports() {
   const exportDir = path.resolve("apps/website/public/export");
   const files = await readdir(exportDir);
-  await Promise.all(files.map((file) => unlink(path.join(exportDir, file))));
+  await Promise.all(
+    files
+      .filter((file) => file !== ".gitkeep")
+      .map((file) => unlink(path.join(exportDir, file))),
+  );
 }
 
 function getGitHash() {
