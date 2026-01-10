@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  format:
+  prettier:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
