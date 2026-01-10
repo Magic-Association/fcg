@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  lint:
+  eslint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
