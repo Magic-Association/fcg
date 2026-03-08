@@ -12,6 +12,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "immer": "^11.1.4",
     "ws": "^8.18.3"
   },
   "optionalDependencies": {
