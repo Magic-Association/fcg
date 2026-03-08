@@ -22,7 +22,7 @@ const cardThree = {
 } as const;
 
 const cardFour = {
-	name: "Proactive",
-	description: `Before you gain score, add ${1} to that score.`,
-	onPlay: {},
+  name: "Proactive",
+  description: `Before you gain score, add ${1} to that score.`,
+  onPlay: {},
 } as const;
