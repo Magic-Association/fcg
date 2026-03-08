@@ -1,14 +1,16 @@
+import { WebSocket } from "ws";
 import RPC from "./rpcTypes.js";
-import matchRpcs from "./matches.js";
-import lobbyRpcs from "../lobby/lobby.js";
+import { RPCContext } from "./context.js";
+import { rpcs } from "./rpcs.js";
 
-export const rpcs = { ...matchRpcs, ...lobbyRpcs };
-
-export default function rpcHandler(rpc: RPC) {
-  const handler = rpcs[rpc.method];
+export default function rpcHandler(ws: WebSocket, rpcMessage: RPC) {
+  const handler = rpcs[rpcMessage.method];
   if (!handler) {
-    throw new Error(`Unknown RPC method: ${rpc.method}`);
+    throw new Error(`Unknown RPC method: ${rpcMessage.method}`);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-explicit-any
-  return (handler as any)(...rpc.args) as ReturnType<typeof handler>;
+
+  const ctx: RPCContext = { client_id: rpcMessage.client_id, ws };
+  // rpcMessage.args already are validated by the type derived from rpcs
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  return handler(ctx, ...rpcMessage.args);
 }

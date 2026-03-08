@@ -1,4 +1,11 @@
+import { existsSync } from "fs";
+import { resolve } from "path";
 import { defineConfig } from "drizzle-kit";
+
+const envPath = resolve(__dirname, "../../.env");
+if (existsSync(envPath)) {
+  process.loadEnvFile(envPath);
+}
 
 export default defineConfig({
   out: "./drizzle",

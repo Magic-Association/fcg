@@ -12,9 +12,12 @@ dist
 .godot
 
 # godot exports
-apps/website/public/export
+apps/website/public/export/*
+!apps/website/public/export/.gitkeep
 
 # misc
 next-env.d.ts
 .DS_Store
+
+# to use, run "git config core.excludesfile .local.gitignore"
 .local.gitignore

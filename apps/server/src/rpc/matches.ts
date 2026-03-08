@@ -1,15 +1,19 @@
-import { RPCContext } from "./rpcTypes.js";
+import { RPCContext } from "./context.js";
 import { Room, exampleMatches, makeRoom } from "../rooms.js";
+import lobbyBroadcast from "../broadcast/lobbyBroadcast.js";
+import { Gamemodes } from "../game/Gamemode.js";
 
 const matches = new Map<number, Room>([...exampleMatches]);
 
-let lastMatchRoomId = 1;
-
-function create_match(ctx: RPCContext) {
-  const matchId = lastMatchRoomId++;
-  const match: Room = makeRoom({ players: [ctx.client_id] });
-  matches.set(matchId, match);
-  return matchId;
+function create_match(ctx: RPCContext, gamemodeName: string) {
+  if (!Object.keys(Gamemodes).includes(gamemodeName)) {
+    throw new Error(`Invalid gamemode: ${gamemodeName}`);
+  }
+  const gamemode = Gamemodes[gamemodeName as keyof typeof Gamemodes];
+  const match: Room = makeRoom({ players: [ctx.client_id], gamemode });
+  matches.set(match.id, match);
+  lobbyBroadcast({ action: "update_match", payload: match });
+  return match.id;
 }
 
 function join_match(ctx: RPCContext, matchId: number) {
@@ -17,13 +21,24 @@ function join_match(ctx: RPCContext, matchId: number) {
   if (!match) {
     throw new Error(`Match ${matchId} does not exist`);
   }
+  if (match.players.includes(ctx.client_id)) {
+    throw new Error(`Client ${ctx.client_id} is already in match ${matchId}`);
+  }
+  if (
+    match.gamemode.teamSetup.reduce((sum, team) => sum + team.size, 0) <=
+    match.players.length
+  ) {
+    throw new Error(`Match ${matchId} is full`);
+  }
   match.players.push(ctx.client_id);
+  lobbyBroadcast({ action: "update_match", payload: match });
 }
 
-function list_matches() {
-  return Array.from(matches.entries());
+function list_matches(_ctx: RPCContext) {
+  return Array.from(matches.values());
 }
 
 const matchRpcs = { join_match, create_match, list_matches };
 
+export { join_match, create_match, list_matches };
 export default matchRpcs;

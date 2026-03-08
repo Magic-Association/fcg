@@ -9,7 +9,8 @@ const devUser = {
   id: "dev-user-id-5026",
   name: "Magic Association Dev",
   email: "dev@magic-association.local",
-  image: "https://avatars.githubusercontent.com/u/242818993?s=400&u=0e71d68ff4bb93d938fb74b3104ab5dfa07f0e82&v=4",
+  image:
+    "https://avatars.githubusercontent.com/u/242818993?s=400&u=0e71d68ff4bb93d938fb74b3104ab5dfa07f0e82&v=4",
 };
 
 export async function getSession() {

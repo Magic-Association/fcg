@@ -8,6 +8,5 @@ func _ready() -> void:
 	username.text = res.username
 	
 	var profile := Image.new()
-	@warning_ignore("unsafe_call_argument")
 	profile.load_png_from_buffer(Marshalls.base64_to_raw(res.avatar))
 	profile_picture.texture = ImageTexture.create_from_image(profile)

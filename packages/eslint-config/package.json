@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "type": "module",
   "private": true,
-  "devDependencies": {
+  "peerDependencies": {
+    "eslint": ">=9.39.1"
+  },
+  "dependencies": {
     "@eslint/js": "^9.39.1",
-    "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.7",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^16.5.0",
