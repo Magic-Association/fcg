@@ -1,5 +1,6 @@
 {
   "files.associations": {
     "export_template.html": "plaintext"
-  }
+  },
+  "js/ts.tsdk.path": "node_modules\\typescript\\lib"
 }
