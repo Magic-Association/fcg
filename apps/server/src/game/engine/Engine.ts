@@ -11,7 +11,7 @@ export default class Engine {
   apply(action: GameAction) {
     const result = action(this.state);
     this.state = result.state;
-    if (result.events?.length) {
+    if (result.events.length) {
       for (const event of result.events) {
         console.log(event.type, event.payload);
       }

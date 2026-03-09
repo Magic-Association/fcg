@@ -2,7 +2,7 @@ import { Draft, produce } from "immer";
 import { GameState } from "@engine/GameState.js";
 import { GameEvent } from "@engine/GameEvent.js";
 
-export type ActionResult = { state: GameState; events?: GameEvent[] };
+export type ActionResult = { state: GameState; events: GameEvent[] };
 export type GameAction = (state: GameState) => ActionResult;
 
 export const action =
