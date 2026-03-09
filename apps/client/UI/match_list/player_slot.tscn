@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm5sv6nkqfwnd"]
+[gd_scene format=3 uid="uid://cm5sv6nkqfwnd"]
 
 [ext_resource type="Script" uid="uid://b2u44r05k6uwt" path="res://UI/match_list/player_slot.gd" id="1_4itwn"]
 [ext_resource type="Texture2D" uid="uid://bij5kpvgyfaap" path="res://Assets/placeholders/white.png" id="2_4itwn"]
@@ -10,7 +10,7 @@ corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
-[node name="PlayerSlot" type="HBoxContainer"]
+[node name="PlayerSlot" type="HBoxContainer" unique_id=2139014822]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -24,25 +24,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4itwn")
 
-[node name="AvatarMask" type="PanelContainer" parent="."]
+[node name="AvatarMask" type="PanelContainer" parent="." unique_id=1835875904]
 clip_children = 1
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_vkgc5")
 
-[node name="Avatar" type="TextureRect" parent="AvatarMask"]
+[node name="Avatar" type="TextureRect" parent="AvatarMask" unique_id=898848541]
 modulate = Color(0.3019608, 0.3019608, 0.3019608, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("2_4itwn")
 
-[node name="UsernameSpacer" type="VBoxContainer" parent="."]
+[node name="UsernameSpacer" type="VBoxContainer" parent="." unique_id=388434549]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Username" type="Label" parent="UsernameSpacer"]
+[node name="Username" type="Label" parent="UsernameSpacer" unique_id=1968096179]
 modulate = Color(0.30102104, 0.301021, 0.30102098, 1)
 layout_mode = 2
 size_flags_horizontal = 4
