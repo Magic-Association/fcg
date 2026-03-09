@@ -24,7 +24,7 @@ export const pipe =
         const result = action(acc.state);
         return {
           state: result.state,
-          events: [...(acc.events ?? []), ...(result.events ?? [])],
+          events: [...acc.events, ...result.events],
         };
       },
       { state, events: [] },
