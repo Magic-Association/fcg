@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  prettier:
+  oxfmt:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -25,4 +25,4 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm exec prettier . --check
+      - run: pnpm run fmt:check
