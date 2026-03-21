@@ -1,4 +1,4 @@
-import { CardData } from "@engine/Card.js";
+import { Card } from "@engine/Card.js";
 import { action, pipe } from "@engine/gameAction.js";
 
 export const incrementTurn = () =>
@@ -6,4 +6,4 @@ export const incrementTurn = () =>
     g.turn += 1;
   });
 
-export const playTurn = (card: CardData) => pipe(card.onPlay, incrementTurn());
+export const playTurn = (card: Card) => pipe(card.play, incrementTurn());
