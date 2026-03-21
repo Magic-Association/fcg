@@ -10,20 +10,20 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@next/env": "^16.0.7",
-    "better-auth": "^1.4.5",
+    "@next/env": "^16.1.6",
+    "better-auth": "^1.5.4",
     "fcg-database": "workspace:fcg-database@^",
-    "next": "^16.0.7",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.17",
+    "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^24.10.1",
-    "@types/react": "^19.2.7",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
   }
 }

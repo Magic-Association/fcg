@@ -4,7 +4,7 @@
 
 ### Game Client
 
-1. Download Godot Engine **4.5.1** from [their website](https://godotengine.org/download/archive/4.5.1-stable/)
+1. Download Godot Engine **4.6.1** from [their website](https://godotengine.org/download/archive/4.6.1-stable/)
 2. Launch Godot, on the project menu, select "Import"
 3. Select the path at `fcg/apps/client`
 
