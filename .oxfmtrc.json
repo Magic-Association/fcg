@@ -1,5 +1,4 @@
 {
-  "printWidth": 80,
   "sortPackageJson": false,
   "ignorePatterns": [
     "packages/database/drizzle/meta",
