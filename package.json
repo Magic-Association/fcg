@@ -6,7 +6,8 @@
     "dev": "pnpm --parallel run dev",
     "build": "pnpm -r run build",
     "lint": "pnpm exec eslint .",
-    "format": "pnpm exec prettier . --write",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "dev:web": "pnpm --filter ./apps/website run dev",
     "build:web": "pnpm --filter ./apps/website run build",
     "generate:db": "pnpm --filter ./packages/database run generate",
@@ -29,7 +30,7 @@
   ],
   "devDependencies": {
     "eslint": "9.39.4",
-    "prettier": "^3.8.1",
+    "oxfmt": "^0.41.0",
     "typescript": "^5.9.3"
   }
 }
