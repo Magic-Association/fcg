@@ -3,9 +3,7 @@ export type { RPCContext } from "./context.js";
 
 import type { RPCContext } from "./context.js";
 
-type RemoveContext<T extends unknown[]> = T extends [RPCContext, ...infer Rest]
-  ? Rest
-  : T;
+type RemoveContext<T extends unknown[]> = T extends [RPCContext, ...infer Rest] ? Rest : T;
 
 type MethodMap = {
   [K in keyof typeof rpcs]: {

@@ -9,9 +9,7 @@ export default async function Home() {
     <main>
       {test.map((u, index) => (
         <div key={index}>
-          <pre className="whitespace-pre-wrap">
-            {JSON.stringify(u, null, 2)}
-          </pre>
+          <pre className="whitespace-pre-wrap">{JSON.stringify(u, null, 2)}</pre>
         </div>
       ))}
     </main>

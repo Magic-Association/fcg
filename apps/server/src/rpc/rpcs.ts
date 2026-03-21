@@ -21,7 +21,5 @@ const rpc = createRpcRegistry()
   .define("hello", hello);
 
 export const rpcs = rpc.registry;
-export const callRpc = (...args: Parameters<typeof rpc.call>) =>
-  rpc.call(...args);
-export const defineRpc = (...args: Parameters<typeof rpc.define>) =>
-  rpc.define(...args);
+export const callRpc = (...args: Parameters<typeof rpc.call>) => rpc.call(...args);
+export const defineRpc = (...args: Parameters<typeof rpc.define>) => rpc.define(...args);
