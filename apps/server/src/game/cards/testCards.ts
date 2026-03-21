@@ -15,13 +15,13 @@ export const cardTwo = {
   onPlay: (g) => addScore(g.turn * 2 + 1)(g),
 } as const satisfies CardData;
 
-const cardThree = {
+const _cardThree = {
   name: "Reactive",
   description: `When you gain score, gain an additional ${2} score.`,
   onPlay: {},
 } as const;
 
-const cardFour = {
+const _cardFour = {
   name: "Proactive",
   description: `Before you gain score, add ${1} to that score.`,
   onPlay: {},
