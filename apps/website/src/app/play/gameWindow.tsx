@@ -66,6 +66,7 @@ export default function GameWindow({ src, info }: GameWindowProps) {
       className="w-screen h-screen block"
       loading="eager"
       src={src}
+      title="Frieren Card Game"
     />
   );
 }

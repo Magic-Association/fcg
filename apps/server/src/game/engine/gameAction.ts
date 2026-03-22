@@ -20,8 +20,8 @@ export const pipe =
   (...actions: GameAction[]) =>
   (state: GameState) =>
     actions.reduce<ActionResult>(
-      (acc, action) => {
-        const result = action(acc.state);
+      (acc, gameAction) => {
+        const result = gameAction(acc.state);
         return {
           state: result.state,
           events: [...acc.events, ...result.events],

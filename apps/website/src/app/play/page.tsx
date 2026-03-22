@@ -11,7 +11,7 @@ export default async function Play() {
   const exportFile =
     files
       .filter((f) => /^FrierenCardGame-[a-f0-9]+\.html$/.test(f))
-      .sort()
+      .toSorted()
       .pop() || "FrierenCardGame.html";
 
   const username = session?.user?.name ?? "";

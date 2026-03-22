@@ -11,6 +11,5 @@ export default function rpcHandler(ws: WebSocket, rpcMessage: RPC) {
 
   const ctx: RPCContext = { client_id: rpcMessage.client_id, ws };
   // rpcMessage.args already are validated by the type derived from rpcs
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   return handler(ctx, ...rpcMessage.args);
 }

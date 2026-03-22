@@ -3,7 +3,6 @@
 
 import { RPCContext } from "./context.js";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type RpcFn = (ctx: RPCContext, ...args: any[]) => unknown;
 
 export type RpcRegistry<R extends Record<string, RpcFn>> = {
