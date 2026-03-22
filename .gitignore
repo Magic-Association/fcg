@@ -17,6 +17,7 @@ apps/website/public/export/*
 
 # misc
 next-env.d.ts
+apps/website/tsconfig.tsbuildinfo
 .DS_Store
 
 # to use, run "git config core.excludesfile .local.gitignore"
