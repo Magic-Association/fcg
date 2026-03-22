@@ -9,8 +9,7 @@ function isGodotReadyMessage(value: unknown): value is GodotReadyMessage {
     typeof value === "object" &&
     value !== null &&
     "godot_client_ready" in value &&
-    typeof (value as { godot_client_ready?: unknown }).godot_client_ready ===
-      "boolean"
+    typeof (value as { godot_client_ready?: unknown }).godot_client_ready === "boolean"
   );
 }
 

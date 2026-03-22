@@ -18,9 +18,7 @@ export default async function interactionCreate(interaction: Interaction) {
     try {
       await replyWithError(interaction, errMsg);
     } catch (replyErr) {
-      console.error(
-        `Also failed to send error reply for interaction ${name}:\n${replyErr}`,
-      );
+      console.error(`Also failed to send error reply for interaction ${name}:\n${replyErr}`);
     }
   }
 }
@@ -35,9 +33,7 @@ async function handleInteraction(interaction: Interaction) {
   }
 }
 
-async function handleChatInputCommand(
-  interaction: ChatInputCommandInteraction,
-) {
+async function handleChatInputCommand(interaction: ChatInputCommandInteraction) {
   const command = getCommand(interaction);
   if (!command) return;
   await command.execute(interaction);
@@ -59,9 +55,7 @@ async function handleUnknownInteraction(interaction: Interaction) {
   }
 }
 
-function getCommand(
-  interaction: ChatInputCommandInteraction | AutocompleteInteraction,
-) {
+function getCommand(interaction: ChatInputCommandInteraction | AutocompleteInteraction) {
   const command = client.commands.get(interaction.commandName);
 
   if (command) {
@@ -91,11 +85,7 @@ function getInteractionIdentifier(interaction: Interaction) {
   if (interaction.isChatInputCommand() || interaction.isAutocomplete()) {
     return interaction.commandName;
   }
-  if (
-    interaction.isButton() ||
-    interaction.isStringSelectMenu() ||
-    interaction.isModalSubmit()
-  ) {
+  if (interaction.isButton() || interaction.isStringSelectMenu() || interaction.isModalSubmit()) {
     return interaction.customId;
   }
   // fallback

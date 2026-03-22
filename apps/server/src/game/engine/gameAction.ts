@@ -6,9 +6,7 @@ export type ActionResult = { state: GameState; events: GameEvent[] };
 export type GameAction = (state: GameState) => ActionResult;
 
 export const action =
-  (
-    recipe: (draft: Draft<GameState>, emit: (event: GameEvent) => void) => void,
-  ) =>
+  (recipe: (draft: Draft<GameState>, emit: (event: GameEvent) => void) => void) =>
   (state: GameState) => {
     const events: GameEvent[] = [];
     const emit = (e: GameEvent) => events.push(e);
