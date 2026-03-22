@@ -5,19 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
-    "build": "tsc && tsc-alias",
-    "start": "node --enable-source-maps ./dist/index.js",
+    "build": "tsdown",
+    "start": "node --enable-source-maps ./dist/index.mjs",
     "register": "tsx ./src/scripts/registerCommands.ts",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "check-types": "tsc --noEmit"
+    "checktypes": "tsc --noEmit"
   },
   "dependencies": {
     "discord.js": "^14.25.1"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
-    "tsc-alias": "^1.8.16",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
