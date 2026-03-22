@@ -59,5 +59,13 @@ export default function GameWindow({ src, info }: GameWindowProps) {
     };
   }, [info]);
 
-  return <iframe ref={iframeRef} className="w-screen h-screen block" loading="eager" src={src} />;
+  return (
+    <iframe
+      ref={iframeRef}
+      className="w-screen h-screen block"
+      loading="eager"
+      src={src}
+      title="Frieren Card Game"
+    />
+  );
 }

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "pnpm --parallel run dev",
     "build": "pnpm -r run build",
-    "lint": "pnpm exec eslint .",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "dev:web": "pnpm --filter ./apps/website run dev",
@@ -29,8 +30,8 @@
     "packages/*"
   ],
   "devDependencies": {
-    "eslint": "9.39.4",
     "oxfmt": "^0.41.0",
+    "oxlint": "^1.56.0",
     "typescript": "^5.9.3"
   }
 }

@@ -3,7 +3,7 @@ import { Room, exampleMatches, makeRoom } from "../rooms.js";
 import lobbyBroadcast from "../broadcast/lobbyBroadcast.js";
 import { Gamemodes } from "../game/Gamemode.js";
 
-const matches = new Map<number, Room>([...exampleMatches]);
+const matches = new Map<number, Room>(exampleMatches);
 
 function create_match(ctx: RPCContext, gamemodeName: string) {
   if (!Object.keys(Gamemodes).includes(gamemodeName)) {

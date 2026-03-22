@@ -1,3 +1,3 @@
 {
-  "recommendations": ["dbaeumer.vscode-eslint", "bradlc.vscode-tailwindcss", "geequlim.godot-tools"]
+  "recommendations": ["oxc.oxc-vscode", "bradlc.vscode-tailwindcss", "geequlim.godot-tools"]
 }
