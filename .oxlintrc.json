@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "unicorn", "typescript", "oxc", "jsx-a11y", "nextjs"],
+  "categories": {},
+  "rules": {},
+  "settings": {
+    "jsx-a11y": {
+      "polymorphicPropName": null,
+      "components": {},
+      "attributes": {}
+    },
+    "next": {
+      "rootDir": ["apps/website"]
+    },
+    "react": {
+      "formComponents": [],
+      "linkComponents": [],
+      "componentWrapperFunctions": []
+    },
+    "jsdoc": {
+      "ignorePrivate": false,
+      "ignoreInternal": false,
+      "ignoreReplacesDocs": true,
+      "overrideReplacesDocs": true,
+      "augmentsExtendsReplacesDocs": false,
+      "implementsReplacesDocs": false,
+      "exemptDestructuredRootsFromChecks": false,
+      "tagNamePreference": {}
+    },
+    "vitest": {
+      "typecheck": false
+    }
+  },
+  "env": {
+    "builtin": true
+  },
+  "globals": {},
+  "ignorePatterns": [
+    "apps/client/**",
+    "apps/website/public/**",
+    "apps/website/.next/**",
+    "apps/website/build/**",
+    "packages/database/drizzle/**",
+    "**/*.d.ts",
+    "**/node_modules/**",
+    "**/dist/**"
+  ]
+}
