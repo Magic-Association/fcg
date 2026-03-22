@@ -1,28 +1,23 @@
-import { addScore } from "@actions/addScore.js";
-import { pipe } from "@engine/gameAction.js";
 import { CardData } from "@engine/Card.js";
 
-// minimal examples to test engine features
+// minimal examples to prove the ActionSpec -> GameAction path
 export const cardOne = {
   name: "Basic",
   description: `Add ${3} score, then add ${1} score.`,
-  onPlay: pipe(addScore(3), addScore(1)),
+  onPlay: {
+    type: "sequence",
+    actions: [
+      { type: "addScore", amount: 3 },
+      { type: "addScore", amount: 1 },
+    ],
+  },
 } as const satisfies CardData;
 
 export const cardTwo = {
-  name: "Using GameState inline",
-  description: `Add ${2} score per turn, plus an additional ${1} score.`,
-  onPlay: (g) => addScore(g.turn * 2 + 1)(g),
+  name: "Simple",
+  description: `Add ${2} score.`,
+  onPlay: {
+    type: "addScore",
+    amount: 2,
+  },
 } as const satisfies CardData;
-
-const _cardThree = {
-  name: "Reactive",
-  description: `When you gain score, gain an additional ${2} score.`,
-  onPlay: {},
-} as const;
-
-const _cardFour = {
-  name: "Proactive",
-  description: `Before you gain score, add ${1} to that score.`,
-  onPlay: {},
-} as const;
