@@ -9,8 +9,7 @@ function isGodotReadyMessage(value: unknown): value is GodotReadyMessage {
     typeof value === "object" &&
     value !== null &&
     "godot_client_ready" in value &&
-    typeof (value as { godot_client_ready?: unknown }).godot_client_ready ===
-      "boolean"
+    typeof (value as { godot_client_ready?: unknown }).godot_client_ready === "boolean"
   );
 }
 
@@ -60,12 +59,5 @@ export default function GameWindow({ src, info }: GameWindowProps) {
     };
   }, [info]);
 
-  return (
-    <iframe
-      ref={iframeRef}
-      className="w-screen h-screen block"
-      loading="eager"
-      src={src}
-    />
-  );
+  return <iframe ref={iframeRef} className="w-screen h-screen block" loading="eager" src={src} />;
 }

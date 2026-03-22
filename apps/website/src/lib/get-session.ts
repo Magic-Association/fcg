@@ -2,8 +2,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-const skipAuth =
-  process.env.NODE_ENV === "development" && process.env.SKIP_AUTH === "true";
+const skipAuth = process.env.NODE_ENV === "development" && process.env.SKIP_AUTH === "true";
 
 const devUser = {
   id: "dev-user-id-5026",

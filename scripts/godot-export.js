@@ -7,9 +7,7 @@ const exportDir = path.resolve("apps/website/public/export");
 async function deleteOldExports() {
   const files = await readdir(exportDir);
   await Promise.all(
-    files
-      .filter((file) => file !== ".gitkeep")
-      .map((file) => unlink(path.join(exportDir, file))),
+    files.filter((file) => file !== ".gitkeep").map((file) => unlink(path.join(exportDir, file))),
   );
 }
 
@@ -26,14 +24,7 @@ function godotExport(hash) {
   return new Promise((resolve, reject) => {
     execFile(
       "godot",
-      [
-        "--headless",
-        "--path",
-        "apps/client",
-        "--export-release",
-        "Web",
-        exportHtmlDir,
-      ],
+      ["--headless", "--path", "apps/client", "--export-release", "Web", exportHtmlDir],
       (err, _stdout, stderr) => {
         if (err) {
           console.error(stderr);

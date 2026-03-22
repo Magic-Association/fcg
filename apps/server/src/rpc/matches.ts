@@ -24,10 +24,7 @@ function join_match(ctx: RPCContext, matchId: number) {
   if (match.players.includes(ctx.client_id)) {
     throw new Error(`Client ${ctx.client_id} is already in match ${matchId}`);
   }
-  if (
-    match.gamemode.teamSetup.reduce((sum, team) => sum + team.size, 0) <=
-    match.players.length
-  ) {
+  if (match.gamemode.teamSetup.reduce((sum, team) => sum + team.size, 0) <= match.players.length) {
     throw new Error(`Match ${matchId} is full`);
   }
   match.players.push(ctx.client_id);
@@ -63,9 +60,7 @@ function start_match(ctx: RPCContext, matchId: number) {
     throw new Error(`Match ${matchId} does not exist`);
   }
   if (!match.players.includes(ctx.client_id)) {
-    throw new Error(
-      `Client ${ctx.client_id} is not in match ${matchId} and cannot start it`,
-    );
+    throw new Error(`Client ${ctx.client_id} is not in match ${matchId} and cannot start it`);
   }
   if (match.state !== "waiting") {
     throw new Error(`Match ${matchId} is already ${match.state}`);
@@ -81,9 +76,7 @@ function end_match(ctx: RPCContext, matchId: number) {
     throw new Error(`Match ${matchId} does not exist`);
   }
   if (!match.players.includes(ctx.client_id)) {
-    throw new Error(
-      `Client ${ctx.client_id} is not in match ${matchId} and cannot end it`,
-    );
+    throw new Error(`Client ${ctx.client_id} is not in match ${matchId} and cannot end it`);
   }
 
   match.state = "finished";
@@ -102,12 +95,5 @@ const matchRpcs = {
   end_match,
 };
 
-export {
-  join_match,
-  create_match,
-  list_matches,
-  leave_match,
-  start_match,
-  end_match,
-};
+export { join_match, create_match, list_matches, leave_match, start_match, end_match };
 export default matchRpcs;

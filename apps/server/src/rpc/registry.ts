@@ -19,9 +19,9 @@ export type RpcRegistry<R extends Record<string, RpcFn>> = {
   registry: R;
 };
 
-export function createRpcRegistry<
-  R extends Record<string, RpcFn> = Record<string, RpcFn>,
->(initial?: R): RpcRegistry<R> {
+export function createRpcRegistry<R extends Record<string, RpcFn> = Record<string, RpcFn>>(
+  initial?: R,
+): RpcRegistry<R> {
   const store = (initial ?? {}) as R;
 
   function define<Name extends string, Fn extends RpcFn>(
@@ -29,9 +29,7 @@ export function createRpcRegistry<
     fn: Fn,
   ): RpcRegistry<R & Record<Name, Fn>> {
     (store as Record<string, RpcFn>)[name] = fn;
-    return createRpcRegistry<R & Record<Name, Fn>>(
-      store as R & Record<Name, Fn>,
-    );
+    return createRpcRegistry<R & Record<Name, Fn>>(store as R & Record<Name, Fn>);
   }
 
   function call<Name extends keyof R>(

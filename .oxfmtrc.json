@@ -1,9 +1,4 @@
 {
-  "printWidth": 80,
   "sortPackageJson": false,
-  "ignorePatterns": [
-    "packages/database/drizzle/meta",
-    "apps/client",
-    "pnpm-lock.yaml"
-  ]
+  "ignorePatterns": ["packages/database/drizzle/meta", "apps/client", "pnpm-lock.yaml"]
 }

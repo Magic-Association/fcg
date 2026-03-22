@@ -28,9 +28,7 @@ try {
     if (config.autoRegisterCommands) {
       try {
         const registered = await registerCommands(client.commands);
-        console.log(
-          `Registered commands: ${registered.map((cmd) => cmd.name).join(", ")}`,
-        );
+        console.log(`Registered commands: ${registered.map((cmd) => cmd.name).join(", ")}`);
       } catch (error) {
         console.error("Failed to register commands", error);
       }
