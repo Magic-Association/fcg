@@ -8,7 +8,7 @@
     "dev": "nodemon",
     "build": "tsdown",
     "start": "node --enable-source-maps dist/index.mjs",
-    "checktypes": "tsc --noEmit",
+    "check-types": "tsc --noEmit",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix"
   },

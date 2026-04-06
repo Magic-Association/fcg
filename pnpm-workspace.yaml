@@ -7,3 +7,6 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
   - unrs-resolver
+
+public-hoist-pattern:
+  - pg
