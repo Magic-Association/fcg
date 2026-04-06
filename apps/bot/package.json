@@ -10,7 +10,7 @@
     "register": "tsx ./src/scripts/registerCommands.ts",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "checktypes": "tsc --noEmit"
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "discord.js": "^14.25.1"

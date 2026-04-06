@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "pnpm --parallel run dev",
     "build": "pnpm -r run build",
-    "checktypes": "pnpm -r run checktypes",
+    "check-types": "pnpm -r run check-types",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
