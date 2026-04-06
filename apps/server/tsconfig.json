@@ -12,12 +12,10 @@
     "isolatedModules": true,
     "sourceMap": true,
     "inlineSources": true,
-    "baseUrl": "./",
-    "outDir": "dist",
     "paths": {
-      "@actions/*": ["src/game/actions/*"],
-      "@engine/*": ["src/game/engine/*"],
-      "@cards/*": ["src/game/cards/*"]
+      "@actions/*": ["./src/game/actions/*"],
+      "@engine/*": ["./src/game/engine/*"],
+      "@cards/*": ["./src/game/cards/*"]
     }
   },
   "include": ["src/**/*"]

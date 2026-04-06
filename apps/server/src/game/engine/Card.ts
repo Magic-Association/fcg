@@ -1,9 +1,10 @@
 import { action, pipe, GameAction } from "@engine/gameAction.js";
+import { ActionSpec, toGameAction } from "./ActionSpec.js";
 
 export type CardData = {
   name: string;
   description: string;
-  onPlay: GameAction;
+  onPlay: ActionSpec;
 };
 
 export type Card = {
@@ -17,7 +18,7 @@ export const createCard = (data: CardData): Card => {
     action((_g, emit) => {
       emit({ type: "cardPlayed", payload: { name: data.name } });
     }),
-    data.onPlay,
+    toGameAction(data.onPlay),
   );
 
   return {

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "pnpm --parallel run dev",
     "build": "pnpm -r run build",
-    "checktypes": "pnpm -r run checktypes",
+    "check-types": "pnpm -r run check-types",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "oxfmt": "^0.41.0",
     "oxlint": "^1.56.0",
-    "tsdown": "^0.21.4",
-    "typescript": "^5.9.3"
+    "tsdown": "^0.21.7",
+    "typescript": "^6.0.2"
   }
 }
