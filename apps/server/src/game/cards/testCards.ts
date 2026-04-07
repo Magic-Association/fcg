@@ -4,24 +4,23 @@ import { CardData } from "@engine/Card.js";
 export const cardOne = {
   name: "Basic",
   description: `Add ${3} score, then add ${1} score.`,
-  onPlay: {
-    type: "sequence",
-    actions: [
-      { type: "addScore", amount: { type: "constant", value: 3 } },
-      { type: "addScore", amount: { type: "constant", value: 1 } },
-    ],
-  },
+  onPlay: [
+    { type: "addScore", amount: { type: "constant", value: 3 } },
+    { type: "addScore", amount: { type: "constant", value: 1 } },
+  ],
 } as const satisfies CardData;
 
 export const cardTwo = {
   name: "Scaling",
   description: "Add a score amount that scales with the current turn.",
-  onPlay: {
-    type: "addScore",
-    amount: {
-      type: "multiply",
-      left: { type: "currentTurn" },
-      right: { type: "constant", value: 2 },
+  onPlay: [
+    {
+      type: "addScore",
+      amount: {
+        type: "multiply",
+        left: { type: "currentTurn" },
+        right: { type: "constant", value: 2 },
+      },
     },
-  },
+  ],
 } as const satisfies CardData;

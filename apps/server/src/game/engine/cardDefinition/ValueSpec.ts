@@ -5,10 +5,12 @@ export type ConstantValueSpec = {
   value: number;
 };
 
+// game state
 export type CurrentTurnValueSpec = {
   type: "currentTurn";
 };
 
+// operations
 export type AddValueSpec = {
   type: "add";
   left: ValueSpec;
