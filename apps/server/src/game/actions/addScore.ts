@@ -1,12 +1,9 @@
 import { action } from "@engine/gameAction.js";
-import { resolveValueSpec } from "@engine/ValueSpec.js";
-import type { ValueSpec } from "@engine/ValueSpec.js";
 
-export const addScore = (amount: ValueSpec) =>
+export const addScore = (amount: number) =>
   action((g, emit) => {
-    const resolvedAmount = resolveValueSpec(amount, g);
     const before = g.score;
-    g.score += resolvedAmount;
+    g.score += amount;
     emit({
       type: "scoreChanged",
       payload: { before, after: g.score },
