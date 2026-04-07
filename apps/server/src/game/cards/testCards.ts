@@ -7,8 +7,8 @@ export const cardOne = {
   onPlay: {
     type: "sequence",
     actions: [
-      { type: "addScore", amount: 3 },
-      { type: "addScore", amount: 1 },
+      { type: "addScore", amount: { type: "constant", value: 3 } },
+      { type: "addScore", amount: { type: "constant", value: 1 } },
     ],
   },
 } as const satisfies CardData;
@@ -18,6 +18,6 @@ export const cardTwo = {
   description: `Add ${2} score.`,
   onPlay: {
     type: "addScore",
-    amount: 2,
+    amount: { type: "constant", value: 2 },
   },
 } as const satisfies CardData;
