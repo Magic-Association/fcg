@@ -14,10 +14,14 @@ export const cardOne = {
 } as const satisfies CardData;
 
 export const cardTwo = {
-  name: "Simple",
-  description: `Add ${2} score.`,
+  name: "Scaling",
+  description: "Add a score amount that scales with the current turn.",
   onPlay: {
     type: "addScore",
-    amount: { type: "constant", value: 2 },
+    amount: {
+      type: "multiply",
+      left: { type: "currentTurn" },
+      right: { type: "constant", value: 2 },
+    },
   },
 } as const satisfies CardData;
