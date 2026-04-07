@@ -1,9 +1,10 @@
 import { addScore } from "@actions/addScore.js";
 import { GameAction, pipe } from "./gameAction.js";
+import type { ValueSpec } from "./ValueSpec.js";
 
 export type PrimitiveActionSpec = {
   type: "addScore";
-  amount: number;
+  amount: ValueSpec;
 };
 
 export type ActionCompositionSpec = {
