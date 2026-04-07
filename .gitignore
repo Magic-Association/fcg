@@ -3,6 +3,7 @@ node_modules
 
 # env files
 .env*
+!.env.template
 
 # builds
 dist
