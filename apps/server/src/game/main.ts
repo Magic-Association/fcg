@@ -9,6 +9,9 @@ const engine = new Engine(baseState);
 const cards = [cardOne, cardTwo].map(createCard);
 
 for (const card of cards) {
-  const state = engine.apply(playTurn(card));
-  console.log(state);
+  const result = engine.apply(playTurn(card));
+  for (const event of result.events) {
+    console.log(event);
+  }
+  console.log(result.state);
 }

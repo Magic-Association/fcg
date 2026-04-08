@@ -1,5 +1,7 @@
+import { Card } from "@engine/Card.js";
+
 export type EventMap = {
-  cardPlayed: { name: string };
+  cardPlayed: { card: Card };
   scoreChanged: { before: number; after: number };
 };
 
