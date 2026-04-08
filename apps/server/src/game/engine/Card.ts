@@ -1,10 +1,10 @@
 import { action, pipe, GameAction } from "@engine/gameAction.js";
-import { CardSpec, toGameActions } from "./cardDefinition/ActionSpec.js";
+import { ActionSpec, toGameActions } from "./cardDefinition/ActionSpec.js";
 
 export type CardData = {
   name: string;
   description: string;
-  onPlay: CardSpec[];
+  onPlay: ActionSpec[];
 };
 
 export type Card = {

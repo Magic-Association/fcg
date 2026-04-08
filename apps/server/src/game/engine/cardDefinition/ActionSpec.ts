@@ -7,14 +7,15 @@ export type GameActionSpec = {
   amount: ValueSpec;
 };
 
-export type CardSpec = GameActionSpec;
+export type ActionSpec = GameActionSpec;
 
-export const toGameActions = (specs: CardSpec[]): GameAction[] => {
+export const toGameActions = (specs: ActionSpec[]): GameAction[] => {
   const actions: GameAction[] = [];
   for (const spec of specs) {
     switch (spec.type) {
       case "addScore":
         actions.push((state) => addScore(resolveValueSpec(spec.amount, state))(state));
+        break;
     }
   }
   return actions;

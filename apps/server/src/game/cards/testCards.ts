@@ -24,3 +24,5 @@ export const cardTwo = {
     },
   ],
 } as const satisfies CardData;
+
+// todo: imitate-like card which plays another card at a reduced effectiveness
