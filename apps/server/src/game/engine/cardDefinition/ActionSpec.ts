@@ -1,6 +1,6 @@
 import { addScore } from "@actions/addScore.js";
 import { GameAction } from "../gameAction.js";
-import type { ValueSpec } from "./ValueSpec.js";
+import { resolveValueSpec, ValueSpec } from "./ValueSpec.js";
 
 export type GameActionSpec = {
   type: "addScore";
@@ -14,7 +14,7 @@ export const toGameActions = (specs: CardSpec[]): GameAction[] => {
   for (const spec of specs) {
     switch (spec.type) {
       case "addScore":
-        actions.push(addScore(spec.amount));
+        actions.push((state) => addScore(resolveValueSpec(spec.amount, state))(state));
     }
   }
   return actions;
