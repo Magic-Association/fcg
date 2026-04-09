@@ -2,6 +2,8 @@ import { addScore } from "@actions/addScore.js";
 import { GameAction } from "../gameAction.js";
 import { resolveValueSpec, ValueSpec } from "./ValueSpec.js";
 
+export type { CharacterTargetSpec } from "./TargetSpec.js";
+
 export type GameActionSpec = {
   type: "addScore";
   amount: ValueSpec;
