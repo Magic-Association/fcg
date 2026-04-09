@@ -1,12 +1,9 @@
 import { GameEvent } from "@engine/GameEvent.js";
 import { GameAction } from "@engine/gameAction.js";
-import { CharacterTargetSpec } from "@engine/cardDefinition/TargetSpec.js";
-import { resolveCharacterTargets } from "@engine/cardDefinition/resolveCharacterTargets.js";
 
 export const addCharacterScore =
-  (target: CharacterTargetSpec, amount: number): GameAction =>
-  (state, context) => {
-    const targetCharacterIds = resolveCharacterTargets(target, state, context);
+  (targetCharacterIds: string[], amount: number): GameAction =>
+  (state) => {
     const characters = new Map(state.characters);
     const events: GameEvent[] = [];
 
