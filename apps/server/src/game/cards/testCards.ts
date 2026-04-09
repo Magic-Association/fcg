@@ -1,16 +1,41 @@
-import { addScore } from "@actions/addScore.js";
-import { pipe } from "@engine/gameAction.js";
 import { CardData } from "@engine/Card.js";
 
-// minimal example
+// minimal examples to prove the ActionSpec -> GameAction path
 export const cardOne = {
   name: "Basic",
   description: `Add ${3} score, then add ${1} score.`,
-  onPlay: {
-    type: "sequence",
-    actions: [
-      { type: "addScore", amount: 3 },
-      { type: "addScore", amount: 1 },
-    ],
-  },
+  onPlay: [
+    { type: "addScore", amount: { type: "constant", value: 3 } },
+    { type: "addScore", amount: { type: "constant", value: 1 } },
+  ],
+} as const satisfies CardData;
+
+export const cardTwo = {
+  name: "Scaling",
+  description: "Add a score amount that scales with the current turn.",
+  onPlay: [
+    {
+      type: "addScore",
+      amount: {
+        type: "multiply",
+        left: { type: "currentTurn" },
+        right: { type: "constant", value: 2 },
+      },
+    },
+  ],
+} as const satisfies CardData;
+
+export const cardThree = {
+  name: "Burst",
+  description: "Add the current turn plus one as a single score change.",
+  onPlay: [
+    {
+      type: "addScore",
+      amount: {
+        type: "add",
+        left: { type: "currentTurn" },
+        right: { type: "constant", value: 1 },
+      },
+    },
+  ],
 } as const satisfies CardData;
