@@ -1,4 +1,4 @@
-import { GameAction } from "@engine/gameAction.js";
+import { GameAction, GameActionContext } from "@engine/gameAction.js";
 import { GameState } from "@engine/GameState.js";
 
 export default class Engine {
@@ -8,8 +8,8 @@ export default class Engine {
     this.state = initialState;
   }
 
-  apply(action: GameAction) {
-    const result = action(this.state);
+  apply(action: GameAction, context: GameActionContext = {}) {
+    const result = action(this.state, context);
     this.state = result.state;
     return result;
   }

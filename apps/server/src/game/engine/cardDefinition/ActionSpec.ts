@@ -14,7 +14,9 @@ export const toGameActions = (specs: ActionSpec[]): GameAction[] => {
   for (const spec of specs) {
     switch (spec.type) {
       case "addScore":
-        actions.push((state) => addScore(resolveValueSpec(spec.amount, state))(state));
+        actions.push((state, context) =>
+          addScore(resolveValueSpec(spec.amount, state))(state, context),
+        );
         break;
     }
   }
