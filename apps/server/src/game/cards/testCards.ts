@@ -25,4 +25,17 @@ export const cardTwo = {
   ],
 } as const satisfies CardData;
 
-// todo: imitate-like card which plays another card at a reduced effectiveness
+export const cardThree = {
+  name: "Burst",
+  description: "Add the current turn plus one as a single score change.",
+  onPlay: [
+    {
+      type: "addScore",
+      amount: {
+        type: "add",
+        left: { type: "currentTurn" },
+        right: { type: "constant", value: 1 },
+      },
+    },
+  ],
+} as const satisfies CardData;
