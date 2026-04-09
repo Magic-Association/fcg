@@ -5,6 +5,8 @@ to test cards on without characters involved yet
 
 export type Character = {
   id: string;
+  controllerId: string;
+  teamId: string;
   personalScore: number;
 };
 
