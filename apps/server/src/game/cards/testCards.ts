@@ -39,3 +39,15 @@ export const cardThree = {
     },
   ],
 } as const satisfies CardData;
+
+export const cardFour = {
+  name: "Lock In",
+  description: "Give yourself 2 personal score.",
+  onPlay: [
+    {
+      type: "addCharacterScore",
+      target: { type: "self" },
+      amount: { type: "constant", value: 2 },
+    },
+  ],
+} as const satisfies CardData;
