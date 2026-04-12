@@ -1,34 +1,26 @@
-import { GameEvent } from "@engine/GameEvent.js";
-import { GameAction } from "@engine/gameAction.js";
+import { action } from "@engine/gameAction.js";
 
-export const addCharacterScore =
-  (targetCharacterIds: string[], amount: number): GameAction =>
-  (state) => {
-    const characters = new Map(state.characters);
-    const events: GameEvent[] = [];
+export const addCharacterScore = (targetId: string, amount: number) =>
+  action((g, emit) => {
+    const characters = new Map(g.characters);
 
-    for (const characterId of targetCharacterIds) {
-      const character = characters.get(characterId);
-      if (!character) {
-        throw new Error(`Character "${characterId}" not found.`);
-      }
-
-      const nextPersonalScore = character.personalScore + amount;
-      characters.set(characterId, {
-        ...character,
-        personalScore: nextPersonalScore,
-      });
-      events.push({
-        type: "characterScoreChanged",
-        payload: { characterId, before: character.personalScore, after: nextPersonalScore },
-      });
+    const character = characters.get(targetId);
+    if (!character) {
+      throw new Error(`Character "${targetId}" not found.`);
     }
 
-    return {
-      state: {
-        ...state,
-        characters,
+    const nextPersonalScore = character.personalScore + amount;
+    characters.set(targetId, {
+      ...character,
+      personalScore: nextPersonalScore,
+    });
+
+    emit({
+      type: "characterScoreChanged",
+      payload: {
+        characterId: targetId,
+        before: character.personalScore,
+        after: nextPersonalScore,
       },
-      events,
-    };
-  };
+    });
+  });
