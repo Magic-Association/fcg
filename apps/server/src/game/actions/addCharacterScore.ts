@@ -1,26 +1,16 @@
-import { action } from "@engine/gameAction.js";
+import { charAction } from "@engine/characterAction.js";
 
-export const addCharacterScore = (targetId: string, amount: number) =>
-  action((g, emit) => {
-    const characters = new Map(g.characters);
-
-    const character = characters.get(targetId);
-    if (!character) {
-      throw new Error(`Character "${targetId}" not found.`);
-    }
-
-    const nextPersonalScore = character.personalScore + amount;
-    characters.set(targetId, {
-      ...character,
-      personalScore: nextPersonalScore,
-    });
+export const addCharacterScore = (amount: number) =>
+  charAction((c, emit) => {
+    const beforeScore = c.personalScore;
+    c.personalScore += amount;
 
     emit({
       type: "characterScoreChanged",
       payload: {
-        characterId: targetId,
-        before: character.personalScore,
-        after: nextPersonalScore,
+        characterId: c.id,
+        before: beforeScore,
+        after: c.personalScore,
       },
     });
   });
