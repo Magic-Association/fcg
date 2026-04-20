@@ -1,5 +1,4 @@
 import { CardData } from "@engine/Card.js";
-import { on } from "events";
 
 // minimal examples to prove the ActionSpec -> GameAction path
 export const cardOne = {

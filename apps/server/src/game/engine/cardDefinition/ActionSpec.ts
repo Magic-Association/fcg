@@ -21,10 +21,7 @@ export type AddCharacterScoreActionSpec = {
 
 export type ActionSpec = AddScoreActionSpec | AddCharacterScoreActionSpec;
 
-export const toGameActions = (
-  source: Character,
-  specs: ActionSpec[],
-): GameAction[] =>
+export const toGameActions = (source: Character, specs: ActionSpec[]): GameAction[] =>
   specs.map((spec) => {
     switch (spec.type) {
       case "addScore":
@@ -36,11 +33,7 @@ export const toGameActions = (
           const amount = resolveValueSpec(spec.amount, state);
           const action = addCharacterScore(amount);
 
-          return pipe(
-            ...targets.map((target) =>
-              charActionToGameAction(target, action),
-            ),
-          )(state);
+          return pipe(...targets.map((target) => charActionToGameAction(target, action)))(state);
         };
     }
   });

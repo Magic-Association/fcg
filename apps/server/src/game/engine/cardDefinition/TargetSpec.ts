@@ -14,8 +14,4 @@ export type AllTargetSpec = {
   type: "allCharacters";
 };
 
-export type TargetSpec =
-  | SelfTargetSpec
-  | AlliesTargetSpec
-  | EnemiesTargetSpec
-  | AllTargetSpec;
+export type TargetSpec = SelfTargetSpec | AlliesTargetSpec | EnemiesTargetSpec | AllTargetSpec;

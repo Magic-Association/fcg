@@ -8,9 +8,7 @@ const engine = new Engine(base1v1State);
 
 const testingChar = engine.state.characters.get("character-one")!;
 
-const cards = [cardFour, cardFive].map((cardData) =>
-  createCard(cardData, testingChar),
-);
+const cards = [cardFour, cardFive].map((cardData) => createCard(cardData, testingChar));
 
 for (const card of cards) {
   const result = engine.apply(playTurn(card));
