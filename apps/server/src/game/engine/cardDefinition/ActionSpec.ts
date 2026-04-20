@@ -32,11 +32,7 @@ export const toGameActions = (specs: ActionSpec[]): GameAction[] => {
       case "addCharacterScore":
         actions.push((state, context) => {
           const amount = resolveValueSpec(spec.amount, state);
-          const targetCharacterIds = resolveCharacterTargets(
-            spec.target,
-            state,
-            context,
-          );
+          const targetCharacterIds = resolveCharacterTargets(spec.target, state, context);
           const targetActions = targetCharacterIds.map((targetId) =>
             addCharacterScore(targetId, amount),
           );
