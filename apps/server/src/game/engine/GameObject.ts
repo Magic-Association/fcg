@@ -2,7 +2,7 @@ import { Character } from "@engine/GameState.js";
 
 export const createGameObject = () => {
   return {
-    id: crypto.randomUUID(),
+    id: Math.random(), // TODO: change to something that can be tested
   };
 };
 

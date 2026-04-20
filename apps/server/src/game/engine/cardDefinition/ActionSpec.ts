@@ -4,6 +4,7 @@ import { GameAction, pipe } from "../gameAction.js";
 import { resolveCharacterTargets } from "./resolveCharacterTargets.js";
 import { resolveValueSpec, ValueSpec } from "./ValueSpec.js";
 import { TargetSpec } from "./TargetSpec.js";
+import { charActionToGameAction } from "@engine/characterAction.js";
 
 export type { TargetSpec } from "./TargetSpec.js";
 
@@ -32,12 +33,9 @@ export const toGameActions = (specs: ActionSpec[]): GameAction[] => {
       case "addCharacterScore":
         actions.push((state) => {
           const amount = resolveValueSpec(spec.amount, state);
-          const targetCharacterIds = resolveCharacterTargets(
-            spec.target,
-            state,
-          );
-          const targetActions = targetCharacterIds.map((targetId) =>
-            addCharacterScore(targetId, amount),
+          const targetCharacters = resolveCharacterTargets(spec.target, state);
+          const targetActions = targetCharacters.map((target) =>
+            charActionToGameAction(target.id, addCharacterScore(amount)),
           );
           return pipe(...targetActions)(state);
         });

@@ -3,11 +3,14 @@ for example purposes, there will be a generic score
 to test cards on without characters involved yet
 */
 
+import { Card } from "./Card.js";
+
 export type Character = {
   id: string;
   controllerId: string;
   teamId: string;
   personalScore: number;
+  hand: Card[];
 };
 
 export type GameState = {
@@ -32,6 +35,7 @@ export const base1v1State = {
         controllerId: "player-one",
         teamId: "team-one",
         personalScore: 0,
+        hand: [],
       },
     ],
     [
@@ -41,6 +45,7 @@ export const base1v1State = {
         controllerId: "player-two",
         teamId: "team-two",
         personalScore: 0,
+        hand: [],
       },
     ],
   ]),
