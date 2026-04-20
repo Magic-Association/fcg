@@ -21,16 +21,11 @@ export const charAction =
   };
 
 export const charActionToGameAction = (
-  targetId: string,
+  target: Character,
   charAction: CharacterAction,
 ) =>
   action((g, emit) => {
-    const target = g.characters.get(targetId);
-    if (!target) {
-      throw new Error(`Character with id ${targetId} not found`);
-    }
-
     const { character, events } = charAction(target);
-    g.characters.set(targetId, character);
+    g.characters.set(target.id, character);
     events.forEach(emit);
   });

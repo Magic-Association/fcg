@@ -38,7 +38,7 @@ export const toGameActions = (
 
           return pipe(
             ...targets.map((target) =>
-              charActionToGameAction(target.id, action),
+              charActionToGameAction(target, action),
             ),
           )(state);
         };

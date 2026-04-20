@@ -2,7 +2,7 @@ import { base1v1State } from "@engine/GameState.js";
 import { cardFour, cardOne, cardThree, cardTwo } from "@cards/testCards.js";
 import Engine from "@engine/Engine.js";
 import { createCard } from "@engine/Card.js";
-import { playTurn } from "@engine/core.js";
+import { playTurn } from "@actions/core.js";
 
 const engine = new Engine(base1v1State);
 
