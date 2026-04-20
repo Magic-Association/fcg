@@ -22,7 +22,7 @@ export const createCard = (data: CardData, owner: Character): Card => {
       action((_g, emit) => {
         emit({ type: "cardPlayed", payload: { card } });
       }),
-      ...toGameActions(data.onPlay),
+      ...toGameActions(owner, data.onPlay),
     ),
   };
   return card;

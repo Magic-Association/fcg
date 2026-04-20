@@ -16,8 +16,5 @@ export const resolveCharacterTargets = (
     case "enemies":
       return [...state.characters.values()]
         .filter((character) => character.teamId !== sourceCharacter.teamId)
-	case "id":
-	  const targetCharacter = state.characters.get(target.id);
-	  return targetCharacter ? [targetCharacter] : [];
   }
 };

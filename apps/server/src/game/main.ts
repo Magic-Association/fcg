@@ -8,7 +8,7 @@ const engine = new Engine(base1v1State);
 
 const testingChar = engine.state.characters.get("character-one")!;
 
-const cards = [cardOne, cardTwo, cardThree, cardFour].map((cardData) =>
+const cards = [cardFour].map((cardData) =>
   createCard(cardData, testingChar),
 );
 

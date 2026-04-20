@@ -1,3 +1,6 @@
+import { enableMapSet } from "immer";
+enableMapSet();
+
 import { Draft, produce } from "immer";
 import { GameState } from "@engine/GameState.js";
 import { GameEvent } from "@engine/GameEvent.js";
