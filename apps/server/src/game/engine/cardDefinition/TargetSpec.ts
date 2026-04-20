@@ -10,4 +10,9 @@ export type EnemiesTargetSpec = {
   type: "enemies";
 };
 
-export type TargetSpec = SelfTargetSpec | AlliesTargetSpec | EnemiesTargetSpec;
+export type IdTargetSpec = {
+  type: "id";
+  id: string;
+};
+
+export type TargetSpec = SelfTargetSpec | AlliesTargetSpec | EnemiesTargetSpec | IdTargetSpec;

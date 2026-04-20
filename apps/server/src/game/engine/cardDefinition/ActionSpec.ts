@@ -5,7 +5,7 @@ import { resolveCharacterTargets } from "./resolveCharacterTargets.js";
 import { resolveValueSpec, ValueSpec } from "./ValueSpec.js";
 import { TargetSpec } from "./TargetSpec.js";
 import { charActionToGameAction } from "@engine/characterAction.js";
-
+import { Character } from "@engine/GameState.js";
 export type { TargetSpec } from "./TargetSpec.js";
 
 export type AddScoreActionSpec = {
@@ -21,26 +21,21 @@ export type AddCharacterScoreActionSpec = {
 
 export type ActionSpec = AddScoreActionSpec | AddCharacterScoreActionSpec;
 
-export const toGameActions = (specs: ActionSpec[]): GameAction[] => {
-  const actions: GameAction[] = [];
-  for (const spec of specs) {
-    switch (spec.type) {
-      case "addScore":
-        actions.push((state) =>
-          addScore(resolveValueSpec(spec.amount, state))(state),
-        );
-        break;
-      case "addCharacterScore":
-        actions.push((state) => {
-          const amount = resolveValueSpec(spec.amount, state);
-          const targetCharacters = resolveCharacterTargets(spec.target, state);
-          const targetActions = targetCharacters.map((target) =>
-            charActionToGameAction(target.id, addCharacterScore(amount)),
-          );
-          return pipe(...targetActions)(state);
-        });
-        break;
-    }
-  }
-  return actions;
+const specResolvers: {
+  [K in ActionSpec["type"]]: (
+    spec: Extract<ActionSpec, { type: K }>,
+  ) => GameAction;
+} = {
+  addScore: (spec) => (state) =>
+    addScore(resolveValueSpec(spec.amount, state))(state),
+  addCharacterScore: (spec) => (state) => {
+    const targets = resolveCharacterTargets(spec.target, state, source);
+    const amount = resolveValueSpec(spec.amount, state);
+    const action = addCharacterScore(amount);
+    return pipe(
+      ...targets.map((target) => charActionToGameAction(target.id, action)),
+    )(state);
+  },
 };
+export const toGameActions = (specs: ActionSpec[]): GameAction[] =>
+  specs.map((spec) => specResolvers[spec.type](spec));
