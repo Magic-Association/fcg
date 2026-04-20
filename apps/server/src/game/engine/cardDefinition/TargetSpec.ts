@@ -10,4 +10,4 @@ export type EnemiesTargetSpec = {
   type: "enemies";
 };
 
-export type CharacterTargetSpec = SelfTargetSpec | AlliesTargetSpec | EnemiesTargetSpec;
+export type TargetSpec = SelfTargetSpec | AlliesTargetSpec | EnemiesTargetSpec;
