@@ -6,6 +6,8 @@
     "dev": "pnpm --parallel run dev",
     "build": "pnpm -r run build",
     "check-types": "pnpm -r run check-types",
+    "test:server": "pnpm --filter ./apps/server run test",
+    "test:watch:server": "pnpm --filter ./apps/server run test:watch",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
