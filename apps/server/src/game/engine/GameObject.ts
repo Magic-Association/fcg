@@ -1,12 +1,14 @@
-export const createGameObject = () => {
+import { IdSource, cryptoIdSource } from "@engine/idSource.js";
+
+export const createGameObject = (idSource: IdSource = cryptoIdSource) => {
   return {
-    id: Math.random(), // TODO: change to something that can be tested
+    id: idSource.nextId(),
   };
 };
 
-export const createOwnedGameObject = (ownerId: string) => {
+export const createOwnedGameObject = (ownerId: string, idSource: IdSource = cryptoIdSource) => {
   return {
-    ...createGameObject(),
+    ...createGameObject(idSource),
     ownerId,
   };
 };

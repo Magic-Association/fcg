@@ -1,4 +1,5 @@
 import { action, pipe, GameAction } from "@engine/gameAction.js";
+import { IdSource } from "@engine/idSource.js";
 import { ActionSpec, toGameActions } from "./cardDefinition/ActionSpec.js";
 import { createOwnedGameObject, OwnedGameObject } from "./GameObject.js";
 
@@ -13,9 +14,9 @@ export type Card = OwnedGameObject & {
   play: GameAction;
 };
 
-export const createCard = (data: CardData, ownerId: string): Card => {
+export const createCard = (data: CardData, ownerId: string, idSource?: IdSource): Card => {
   const card = {
-    ...createOwnedGameObject(ownerId),
+    ...createOwnedGameObject(ownerId, idSource),
     data,
     play: pipe(
       action((_g, emit) => {
