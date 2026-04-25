@@ -1,14 +1,30 @@
-export const createGameObject = () => {
+import { randomUUID } from "node:crypto";
+
+export type GameObject = {
+  id: string;
+};
+
+export type OwnedGameObject = GameObject & {
+  ownerId: string;
+};
+
+export const createGameObjectWithId = (id: string): GameObject => {
   return {
-    id: Math.random(), // TODO: change to something that can be tested
+    id,
   };
 };
 
-export const createOwnedGameObject = (ownerId: string) => {
+export const createGameObject = (): GameObject => {
+  return createGameObjectWithId(randomUUID());
+};
+
+export const createOwnedGameObjectWithId = (ownerId: string, id: string): OwnedGameObject => {
   return {
-    ...createGameObject(),
+    ...createGameObjectWithId(id),
     ownerId,
   };
 };
-export type GameObject = ReturnType<typeof createGameObject>;
-export type OwnedGameObject = ReturnType<typeof createOwnedGameObject>;
+
+export const createOwnedGameObject = (ownerId: string): OwnedGameObject => {
+  return createOwnedGameObjectWithId(ownerId, randomUUID());
+};
