@@ -1,4 +1,4 @@
-import { Character } from "@engine/Character.js";
+import { Character, createCharacter } from "@engine/Character.js";
 
 export type GameState = {
   turn: number;
@@ -17,23 +17,19 @@ export const base1v1State = {
   characters: new Map([
     [
       "character-one",
-      {
+      createCharacter({
         id: "character-one",
         controllerId: "player-one",
         teamId: "team-one",
-        personalScore: 0,
-        hand: [],
-      },
+      }),
     ],
     [
       "character-two",
-      {
+      createCharacter({
         id: "character-two",
         controllerId: "player-two",
         teamId: "team-two",
-        personalScore: 0,
-        hand: [],
-      },
+      }),
     ],
   ]),
 } as const satisfies GameState;
