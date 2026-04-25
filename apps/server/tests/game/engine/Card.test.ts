@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { playTurn } from "@actions/core.js";
 import { cardFive, cardFour } from "@cards/testCards.js";
-import { createCard } from "@engine/Card.js";
+import { createCard, createCardFactory } from "@engine/Card.js";
 import Engine from "@engine/Engine.js";
 import { base1v1State } from "@engine/GameState.js";
 import { createCounterIdSource } from "@engine/idSource.js";
@@ -9,7 +9,8 @@ import { createCounterIdSource } from "@engine/idSource.js";
 describe("createCard", () => {
   test("uses the provided id source and applies a self-targeting action", () => {
     const engine = new Engine(base1v1State);
-    const card = createCard(cardFour, "character-one", createCounterIdSource("card"));
+    const createTestCard = createCardFactory(createCounterIdSource("card"));
+    const card = createTestCard(cardFour, "character-one");
 
     const result = engine.apply(playTurn(card));
 
@@ -39,7 +40,8 @@ describe("createCard", () => {
 
   test("resolves all-character targets against the current game state", () => {
     const engine = new Engine(base1v1State);
-    const card = createCard(cardFive, "character-one", createCounterIdSource("card"));
+    const createTestCard = createCardFactory(createCounterIdSource("card"));
+    const card = createTestCard(cardFive, "character-one");
 
     const result = engine.apply(playTurn(card));
 
@@ -63,5 +65,13 @@ describe("createCard", () => {
     ]);
     expect(engine.state.characters.get("character-one")?.personalScore).toBe(1);
     expect(engine.state.characters.get("character-two")?.personalScore).toBe(1);
+  });
+
+  test("default createCard still creates a usable runtime card", () => {
+    const card = createCard(cardFour, "character-one");
+
+    expect(card.ownerId).toBe("character-one");
+    expect(typeof card.id).toBe("string");
+    expect(card.id.length).toBeGreaterThan(0);
   });
 });
