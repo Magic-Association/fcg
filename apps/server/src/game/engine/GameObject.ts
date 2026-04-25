@@ -1,16 +1,22 @@
-import { IdSource, cryptoIdSource } from "@engine/idSource.js";
+import { randomUUID } from "node:crypto";
 
-export const createGameObject = (idSource: IdSource = cryptoIdSource) => {
+export type GameObject = {
+  id: string;
+};
+
+export type OwnedGameObject = GameObject & {
+  ownerId: string;
+};
+
+export const createGameObject = (): GameObject => {
   return {
-    id: idSource.nextId(),
+    id: randomUUID(),
   };
 };
 
-export const createOwnedGameObject = (ownerId: string, idSource: IdSource = cryptoIdSource) => {
+export const createOwnedGameObject = (ownerId: string): OwnedGameObject => {
   return {
-    ...createGameObject(idSource),
+    ...createGameObject(),
     ownerId,
   };
 };
-export type GameObject = ReturnType<typeof createGameObject>;
-export type OwnedGameObject = ReturnType<typeof createOwnedGameObject>;
