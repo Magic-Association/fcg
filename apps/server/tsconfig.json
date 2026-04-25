@@ -18,5 +18,5 @@
       "@cards/*": ["./src/game/cards/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "tests/**/*"]
 }
