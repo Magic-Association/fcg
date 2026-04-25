@@ -8,15 +8,23 @@ export type OwnedGameObject = GameObject & {
   ownerId: string;
 };
 
-export const createGameObject = (): GameObject => {
+export const createGameObjectWithId = (id: string): GameObject => {
   return {
-    id: randomUUID(),
+    id,
+  };
+};
+
+export const createGameObject = (): GameObject => {
+  return createGameObjectWithId(randomUUID());
+};
+
+export const createOwnedGameObjectWithId = (ownerId: string, id: string): OwnedGameObject => {
+  return {
+    ...createGameObjectWithId(id),
+    ownerId,
   };
 };
 
 export const createOwnedGameObject = (ownerId: string): OwnedGameObject => {
-  return {
-    ...createGameObject(),
-    ownerId,
-  };
+  return createOwnedGameObjectWithId(ownerId, randomUUID());
 };
