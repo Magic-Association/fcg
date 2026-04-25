@@ -5,7 +5,7 @@ import { resolveCharacterTargets } from "./resolveCharacterTargets.js";
 import { resolveValueSpec, ValueSpec } from "./ValueSpec.js";
 import { TargetSpec } from "./TargetSpec.js";
 import { charActionToGameAction } from "@engine/characterAction.js";
-import { Character } from "@engine/GameState.js";
+
 export type { TargetSpec } from "./TargetSpec.js";
 
 export type AddScoreActionSpec = {
@@ -21,7 +21,7 @@ export type AddCharacterScoreActionSpec = {
 
 export type ActionSpec = AddScoreActionSpec | AddCharacterScoreActionSpec;
 
-export const toGameActions = (source: Character, specs: ActionSpec[]): GameAction[] =>
+export const toGameActions = (sourceId: string, specs: ActionSpec[]): GameAction[] =>
   specs.map((spec) => {
     switch (spec.type) {
       case "addScore":
@@ -29,11 +29,13 @@ export const toGameActions = (source: Character, specs: ActionSpec[]): GameActio
 
       case "addCharacterScore":
         return (state) => {
-          const targets = resolveCharacterTargets(spec.target, state, source);
+          const targets = resolveCharacterTargets(spec.target, state, sourceId);
           const amount = resolveValueSpec(spec.amount, state);
           const action = addCharacterScore(amount);
 
-          return pipe(...targets.map((target) => charActionToGameAction(target, action)))(state);
+          return pipe(...targets.map((targetId) => charActionToGameAction(targetId, action)))(
+            state,
+          );
         };
     }
   });

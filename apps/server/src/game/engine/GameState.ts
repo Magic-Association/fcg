@@ -1,17 +1,4 @@
-/*
-for example purposes, there will be a generic score
-to test cards on without characters involved yet
-*/
-
-import { Card } from "./Card.js";
-
-export type Character = {
-  id: string;
-  controllerId: string;
-  teamId: string;
-  personalScore: number;
-  hand: Card[];
-};
+import { Character } from "@engine/Character.js";
 
 export type GameState = {
   turn: number;

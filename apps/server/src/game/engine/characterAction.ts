@@ -1,5 +1,5 @@
 import { Draft, produce } from "immer";
-import { Character } from "@engine/GameState.js";
+import { Character, lookupCharacter } from "@engine/Character.js";
 import { GameEvent } from "@engine/GameEvent.js";
 import { action } from "./gameAction.js";
 
@@ -18,8 +18,10 @@ export const charAction =
     return { character: nextCharacter, events };
   };
 
-export const charActionToGameAction = (target: Character, charAction: CharacterAction) =>
+export const charActionToGameAction = (targetId: string, charAction: CharacterAction) =>
   action((g, emit) => {
+    const target = lookupCharacter(g, targetId);
+
     const { character, events } = charAction(target);
     g.characters.set(target.id, character);
     events.forEach(emit);

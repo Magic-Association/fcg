@@ -1,7 +1,6 @@
 import { action, pipe, GameAction } from "@engine/gameAction.js";
 import { ActionSpec, toGameActions } from "./cardDefinition/ActionSpec.js";
 import { createOwnedGameObject, OwnedGameObject } from "./GameObject.js";
-import { Character } from "./GameState.js";
 
 export type CardData = {
   name: string;
@@ -14,15 +13,15 @@ export type Card = OwnedGameObject & {
   play: GameAction;
 };
 
-export const createCard = (data: CardData, owner: Character): Card => {
+export const createCard = (data: CardData, ownerId: string): Card => {
   const card = {
-    ...createOwnedGameObject(owner),
+    ...createOwnedGameObject(ownerId),
     data,
     play: pipe(
       action((_g, emit) => {
         emit({ type: "cardPlayed", payload: { card } });
       }),
-      ...toGameActions(owner, data.onPlay),
+      ...toGameActions(ownerId, data.onPlay),
     ),
   };
   return card;
