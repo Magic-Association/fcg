@@ -1,37 +1,24 @@
-import { GameActionContext } from "@engine/gameAction.js";
 import { GameState } from "@engine/GameState.js";
-import { CharacterTargetSpec } from "./TargetSpec.js";
+import { TargetSpec } from "./TargetSpec.js";
+import { Character, lookupCharacter } from "@engine/Character.js";
 
-const getSourceCharacter = (state: GameState, context: GameActionContext) => {
-  if (!context.sourceCharacterId) {
-    throw new Error("Missing sourceCharacterId in action context.");
-  }
-
-  const sourceCharacter = state.characters.get(context.sourceCharacterId);
-  if (!sourceCharacter) {
-    throw new Error(`Source character "${context.sourceCharacterId}" not found.`);
-  }
-
-  return sourceCharacter;
+const targetFilters: Record<
+  TargetSpec["type"],
+  (source: Character, potentialTarget: Character) => boolean
+> = {
+  self: (source, target) => target.id === source.id,
+  allies: (source, target) => target.teamId === source.teamId,
+  enemies: (source, target) => target.teamId !== source.teamId,
+  allCharacters: () => true,
 };
 
 export const resolveCharacterTargets = (
-  target: CharacterTargetSpec,
+  targetSpec: TargetSpec,
   state: GameState,
-  context: GameActionContext,
+  sourceCharacterId: string,
 ): string[] => {
-  const sourceCharacter = getSourceCharacter(state, context);
+  const chars = [...state.characters.values()];
+  const source = lookupCharacter(state, sourceCharacterId);
 
-  switch (target.type) {
-    case "self":
-      return [sourceCharacter.id];
-    case "allies":
-      return [...state.characters.values()]
-        .filter((character) => character.teamId === sourceCharacter.teamId)
-        .map((character) => character.id);
-    case "enemies":
-      return [...state.characters.values()]
-        .filter((character) => character.teamId !== sourceCharacter.teamId)
-        .map((character) => character.id);
-  }
+  return chars.filter((target) => targetFilters[targetSpec.type](source, target)).map((c) => c.id);
 };

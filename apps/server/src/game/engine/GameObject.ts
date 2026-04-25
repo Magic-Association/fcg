@@ -1,15 +1,13 @@
-import { Character } from "@engine/GameState.js";
-
 export const createGameObject = () => {
   return {
-    id: crypto.randomUUID(),
+    id: Math.random(), // TODO: change to something that can be tested
   };
 };
 
-export const createOwnedGameObject = (owner: Character) => {
+export const createOwnedGameObject = (ownerId: string) => {
   return {
     ...createGameObject(),
-    owner,
+    ownerId,
   };
 };
 export type GameObject = ReturnType<typeof createGameObject>;

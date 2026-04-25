@@ -1,11 +1,12 @@
 import { addCharacterScore } from "@actions/addCharacterScore.js";
 import { addScore } from "@actions/addScore.js";
-import { GameAction } from "../gameAction.js";
+import { GameAction, pipe } from "../gameAction.js";
 import { resolveCharacterTargets } from "./resolveCharacterTargets.js";
 import { resolveValueSpec, ValueSpec } from "./ValueSpec.js";
-import { CharacterTargetSpec } from "./TargetSpec.js";
+import { TargetSpec } from "./TargetSpec.js";
+import { charActionToGameAction } from "@engine/characterAction.js";
 
-export type { CharacterTargetSpec } from "./TargetSpec.js";
+export type { TargetSpec } from "./TargetSpec.js";
 
 export type AddScoreActionSpec = {
   type: "addScore";
@@ -14,29 +15,27 @@ export type AddScoreActionSpec = {
 
 export type AddCharacterScoreActionSpec = {
   type: "addCharacterScore";
-  target: CharacterTargetSpec;
+  target: TargetSpec;
   amount: ValueSpec;
 };
 
 export type ActionSpec = AddScoreActionSpec | AddCharacterScoreActionSpec;
 
-export const toGameActions = (specs: ActionSpec[]): GameAction[] => {
-  const actions: GameAction[] = [];
-  for (const spec of specs) {
+export const toGameActions = (sourceId: string, specs: ActionSpec[]): GameAction[] =>
+  specs.map((spec) => {
     switch (spec.type) {
       case "addScore":
-        actions.push((state, context) =>
-          addScore(resolveValueSpec(spec.amount, state))(state, context),
-        );
-        break;
+        return (state) => addScore(resolveValueSpec(spec.amount, state))(state);
+
       case "addCharacterScore":
-        actions.push((state, context) => {
+        return (state) => {
+          const targets = resolveCharacterTargets(spec.target, state, sourceId);
           const amount = resolveValueSpec(spec.amount, state);
-          const targetCharacterIds = resolveCharacterTargets(spec.target, state, context);
-          return addCharacterScore(targetCharacterIds, amount)(state, context);
-        });
-        break;
+          const action = addCharacterScore(amount);
+
+          return pipe(...targets.map((targetId) => charActionToGameAction(targetId, action)))(
+            state,
+          );
+        };
     }
-  }
-  return actions;
-};
+  });

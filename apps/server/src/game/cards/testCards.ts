@@ -51,3 +51,15 @@ export const cardFour = {
     },
   ],
 } as const satisfies CardData;
+
+export const cardFive = {
+  name: "Point Party",
+  description: "Add 1 score to all characters.",
+  onPlay: [
+    {
+      type: "addCharacterScore",
+      target: { type: "allCharacters" },
+      amount: { type: "constant", value: 1 },
+    },
+  ],
+} as const satisfies CardData;
