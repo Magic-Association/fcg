@@ -3,7 +3,7 @@ import { Character, createCharacter } from "@engine/Character.js";
 export type GameState = {
   turn: number;
   score: number;
-  characters: Map<string, Character>;
+  characters: ReadonlyMap<string, Character>;
 };
 
 export const baseState = {
