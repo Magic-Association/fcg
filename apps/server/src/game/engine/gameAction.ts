@@ -7,9 +7,10 @@ import { GameEvent } from "@engine/GameEvent.js";
 
 export type ActionResult = { state: GameState; events: GameEvent[] };
 export type GameAction = (state: GameState) => ActionResult;
+export type EmitGameEvent = (event: GameEvent) => void;
 
 export const action =
-  (recipe: (draft: Draft<GameState>, emit: (event: GameEvent) => void) => void) =>
+  (recipe: (draft: Draft<GameState>, emit: EmitGameEvent) => void) =>
   (state: GameState) => {
     const events: GameEvent[] = [];
     const emit = (e: GameEvent) => events.push(e);

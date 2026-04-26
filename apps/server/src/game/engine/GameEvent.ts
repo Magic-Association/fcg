@@ -1,6 +1,9 @@
 import { Card } from "@engine/Card.js";
+import { Character } from "./Character.js";
 
 export type EventMap = {
+  cardDrawn: { character: Character; card: Card };
+  deckReshuffled: { character: Character };
   cardPlayed: { card: Card };
   scoreChanged: { before: number; after: number };
   characterScoreChanged: { characterId: string; before: number; after: number };
