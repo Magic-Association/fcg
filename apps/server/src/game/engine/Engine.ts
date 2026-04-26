@@ -2,7 +2,7 @@ import { GameAction } from "@engine/gameAction.js";
 import { GameState } from "@engine/GameState.js";
 
 export default class Engine {
-  #state: GameState;
+	#state: GameState;
 
   constructor(initialState: GameState) {
     this.#state = initialState;
@@ -14,7 +14,7 @@ export default class Engine {
     return result;
   }
 
-  get state() {
+  get state(): Readonly<GameState> {
     return this.#state;
   }
 }

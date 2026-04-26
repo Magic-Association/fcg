@@ -1,7 +1,7 @@
 import { Draft, produce } from "immer";
 import { Character, lookupCharacter } from "@engine/Character.js";
 import { GameEvent } from "@engine/GameEvent.js";
-import { action } from "./gameAction.js";
+import { action, EmitGameEvent } from "./gameAction.js";
 
 export type CharacterActionResult = {
   character: Character;
@@ -10,7 +10,7 @@ export type CharacterActionResult = {
 export type CharacterAction = (character: Character) => CharacterActionResult;
 
 export const charAction =
-  (recipe: (draft: Draft<Character>, emit: (event: GameEvent) => void) => void) =>
+  (recipe: (draft: Draft<Character>, emit: EmitGameEvent) => void) =>
   (character: Character) => {
     const events: GameEvent[] = [];
     const emit = (e: GameEvent) => events.push(e);
